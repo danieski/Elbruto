@@ -1,0 +1,19 @@
+~ start
+
+Nathan: Start!
+
+
+~ pick_treasure
+if !has_apple:
+	Dani: Opens the treasure
+	set has_apple = true
+else:
+	Dani: The chest is already opened
+
+=> END
+ 
+~ talks_npc
+
+Npc: Hello Lord
+
+=> END

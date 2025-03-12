@@ -1,0 +1,56 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Plataform2D"
+run/main_scene="res://scenes/game.tscn"
+config/features=PackedStringArray("4.3", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Global="*res://global.gd"
+
+[dialogue_manager]
+
+general/states=["Global"]
+general/include_all_responses=true
+
+[dotnet]
+
+project/assembly_name="Plataform2D"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
+
+[input]
+
+move_left={
+"deadzone": 0.5,
+"events": []
+}
+
+[internationalization]
+
+locale/translations_pot_files=PackedStringArray("res://dialog/dialogue.dialogue")
+
+[layer_names]
+
+2d_physics/layer_1="Floor"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Coin"
+2d_physics/layer_5="Actionables"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
