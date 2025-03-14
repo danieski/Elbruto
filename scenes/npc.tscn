@@ -36,7 +36,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_lck3x")
 }],
 "loop": true,
-"name": &"default",
+"name": &"idle",
 "speed": 4.0
 }]
 
@@ -45,8 +45,8 @@ radius = 8.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_kftpr")
+animation = &"idle"
 autoplay = "default"
-frame_progress = 0.118634
 
 [node name="actionable" type="Area2D" parent="."]
 collision_layer = 16
@@ -57,7 +57,3 @@ dialogue_start = "talks_npc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="actionable"]
 shape = SubResource("CircleShape2D_tflae")
-
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="Area2D" type="Area2D" parent="."]

@@ -1,0 +1,159 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_yj6ng"]
+
+[resource]
+script = ExtResource("1_yj6ng")
+using_states = PackedStringArray()
+titles = {
+"pick_treasure": "7",
+"start": "3",
+"talks_npc": "17"
+}
+character_names = PackedStringArray("Nathan", "Dani", "Npc")
+first_title = "3"
+lines = {
+"1": {
+"id": "1",
+"next_id": "3",
+"text": "start",
+"type": &"title"
+},
+"10": {
+"id": "10",
+"next_conditional_id": "13",
+"next_id": "11",
+"next_id_after": "13",
+"type": &"condition"
+},
+"11": {
+"character": "Dani",
+"character_replacements": Array[Dictionary]([]),
+"id": "11",
+"next_id": "13",
+"notes": "",
+"parent_id": "10",
+"tags": PackedStringArray(),
+"text": "The chest is already opened",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "The chest is already opened",
+"type": &"dialogue"
+},
+"13": {
+"id": "13",
+"is_snippet": false,
+"next_id": "end",
+"type": &"goto"
+},
+"15": {
+"id": "15",
+"next_id": "17",
+"text": "talks_npc",
+"type": &"title"
+},
+"17": {
+"character": "Npc",
+"character_replacements": Array[Dictionary]([]),
+"id": "17",
+"next_id": "19",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "Hello Lord",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Hello Lord",
+"type": &"dialogue"
+},
+"19": {
+"id": "19",
+"is_snippet": false,
+"next_id": "end",
+"type": &"goto"
+},
+"3": {
+"character": "Nathan",
+"character_replacements": Array[Dictionary]([]),
+"id": "3",
+"next_id": "6",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "Start!",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Start!",
+"type": &"dialogue"
+},
+"6": {
+"id": "6",
+"next_id": "7",
+"text": "pick_treasure",
+"type": &"title"
+},
+"7": {
+"condition": {
+"expression": Array[Dictionary]([{
+"type": "not"
+}, {
+"type": "variable",
+"value": "has_apple"
+}, {
+"type": "colon"
+}])
+},
+"id": "7",
+"next_conditional_id": "10",
+"next_id": "8",
+"next_id_after": "13",
+"type": &"condition"
+},
+"8": {
+"character": "Dani",
+"character_replacements": Array[Dictionary]([]),
+"id": "8",
+"next_id": "9",
+"notes": "",
+"parent_id": "7",
+"tags": PackedStringArray(),
+"text": "Opens the treasure",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Opens the treasure",
+"type": &"dialogue"
+},
+"9": {
+"id": "9",
+"mutation": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "has_apple"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "variable",
+"value": "true"
+}]),
+"is_blocking": true
+},
+"next_id": "13",
+"parent_id": "7",
+"type": &"mutation"
+}
+}
+raw_text = "~ start
+
+Nathan: Start!
+
+
+~ pick_treasure
+if !has_apple:
+	Dani: Opens the treasure
+	set has_apple = true
+else:
+	Dani: The chest is already opened
+
+=> END
+ 
+~ talks_npc
+
+Npc: Hello Lord
+
+=> END"
+metadata/dialogue_manager_version = "2.45.0"

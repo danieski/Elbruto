@@ -1,0 +1,9 @@
+res://scenes/Player.tscn
+res://scenes/game.tscn
+res://scenes/npc.tscn
+res://scenes/follower_npc.tscn
+res://StateMachine/player_states/player_state_running.gd
+res://scripts/player.gd
+res://scenes/follower_npc.gd
+res://StateMachine/npc_states/npc_state_idle.gd
+res://StateMachine/npc_states/npc_state_running.gd

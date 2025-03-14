@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://ciy1qmtn641cs"]
+[gd_scene load_steps=16 format=4 uid="uid://ciy1qmtn641cs"]
 
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_2lvlb"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="1_vkvpy"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cdh8p3qpc5fap" path="res://scenes/coin.tscn" id="4_vkgvq"]
 [ext_resource type="Resource" uid="uid://c5jrgfrom2os1" path="res://dialog/dialogue.dialogue" id="5_ifr8u"]
 [ext_resource type="PackedScene" uid="uid://cgh462ipfngmi" path="res://scenes/npc.tscn" id="7_t3anb"]
+[ext_resource type="PackedScene" uid="uid://qyjtd2ihs6p6" path="res://scenes/follower_npc.tscn" id="8_y8lau"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5srcl"]
 texture = ExtResource("1_2lvlb")
@@ -2552,5 +2553,8 @@ position = Vector2(0, -7)
 zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
-[node name="AnimatedSprite2D" parent="." instance=ExtResource("7_t3anb")]
+[node name="Npc" parent="." instance=ExtResource("7_t3anb")]
+position = Vector2(59, -19)
+
+[node name="FollowerNPC" parent="." instance=ExtResource("8_y8lau")]
 position = Vector2(59, -19)
