@@ -3,6 +3,7 @@ extends StateBase
 
 func on_physics_process(delta):
 	controlled_node.velocity=Vector2.ZERO
+	
 			
 	if Input.is_action_pressed("ui_right"):
 		controlled_node.velocity.x = controlled_node.SPEED*delta
@@ -18,3 +19,8 @@ func on_physics_process(delta):
 		controlled_node.animation_player.play("walk_down")	
 	if controlled_node.velocity == Vector2.ZERO:
 		state_machine.change_to("PlayerStateIdle")
+		
+	controlled_node.move_and_slide()
+func end():
+	controlled_node.last_animation = controlled_node.animation_player.current_animation
+	print(controlled_node.last_animation)

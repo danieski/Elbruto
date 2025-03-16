@@ -5,7 +5,8 @@ const SPEED = 2530.0
 const JUMP_VELOCITY = -300.0
 @onready var actionable_finder: Area2D = $Marker2D/ActionableFinder
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
+@onready var marker_2d: Marker2D = $Marker2D
+var last_animation: String = "walk_down"
 
 
 func _physics_process(delta: float) -> void:

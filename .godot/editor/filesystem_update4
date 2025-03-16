@@ -1,9 +1,9 @@
+res://scenes/follower_npc.tscn
 res://scenes/Player.tscn
 res://scenes/game.tscn
 res://scenes/npc.tscn
-res://scenes/follower_npc.tscn
+res://scripts/player_control.gd
 res://StateMachine/player_states/player_state_running.gd
 res://scripts/player.gd
-res://scenes/follower_npc.gd
-res://StateMachine/npc_states/npc_state_idle.gd
-res://StateMachine/npc_states/npc_state_running.gd
+res://StateMachine/player_states/player_state_idle.gd
+res://StateMachine/player_states/player_state_attack.gd

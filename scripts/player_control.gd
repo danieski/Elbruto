@@ -9,6 +9,7 @@ enum STATE {
 }
 
 var current_state:STATE = STATE.IDLE
+
 func _physics_process(delta: float) -> void:
 	match current_state:
 		STATE.IDLE:
