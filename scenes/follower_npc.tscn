@@ -1,12 +1,11 @@
-[gd_scene load_steps=40 format=3 uid="uid://qyjtd2ihs6p6"]
+[gd_scene load_steps=39 format=3 uid="uid://qyjtd2ihs6p6"]
 
 [ext_resource type="PackedScene" uid="uid://cgh462ipfngmi" path="res://scenes/npc.tscn" id="1_1av6q"]
 [ext_resource type="Script" path="res://scenes/follower_npc.gd" id="1_q2nxc"]
-[ext_resource type="Script" path="res://scripts/actionable.gd" id="2_ce1m8"]
 [ext_resource type="Texture2D" uid="uid://bpauc51v0qnag" path="res://Assets/sprites/knight.png" id="3_07ijw"]
-[ext_resource type="Resource" uid="uid://c5jrgfrom2os1" path="res://dialog/dialogue.dialogue" id="3_pto0q"]
 [ext_resource type="PackedScene" uid="uid://ls5xuq0b2sbh" path="res://StateMachine/state_machine.tscn" id="5_6m42g"]
 [ext_resource type="Script" path="res://StateMachine/npc_states/npc_state_idle.gd" id="6_bjxoj"]
+[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="7_gp58k"]
 [ext_resource type="Script" path="res://StateMachine/npc_states/npc_state_running.gd" id="7_p0204"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ignm"]
@@ -195,9 +194,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_n8ilo"]
-radius = 4.12311
-
 [sub_resource type="Animation" id="Animation_cxag2"]
 length = 0.001
 tracks/0/type = "value"
@@ -353,23 +349,17 @@ _data = {
 "running_right": SubResource("Animation_tdgmd")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_00wgs"]
+size = Vector2(6, 8)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 65
 script = ExtResource("1_q2nxc")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
 scale = Vector2(0.484375, 0.458333)
 sprite_frames = SubResource("SpriteFrames_h4x55")
 autoplay = ""
-
-[node name="actionable" type="Area2D" parent="."]
-collision_layer = 16
-collision_mask = 0
-script = ExtResource("2_ce1m8")
-dialogue_resource = ExtResource("3_pto0q")
-dialogue_start = "talks_npc"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="actionable"]
-shape = SubResource("CircleShape2D_n8ilo")
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("default_state") instance=ExtResource("5_6m42g")]
 default_state = NodePath("NPCStateIdle")
@@ -384,3 +374,14 @@ script = ExtResource("7_p0204")
 libraries = {
 "": SubResource("AnimationLibrary_j1p3y")
 }
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 64
+collision_mask = 32
+script = ExtResource("7_gp58k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_00wgs")
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

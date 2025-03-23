@@ -2557,4 +2557,10 @@ position_smoothing_enabled = true
 position = Vector2(59, -19)
 
 [node name="FollowerNPC" parent="." instance=ExtResource("8_y8lau")]
-position = Vector2(59, -19)
+position = Vector2(-39, -22)
+
+[node name="FollowerNPC2" parent="." instance=ExtResource("8_y8lau")]
+position = Vector2(-2, -24)
+
+[node name="FollowerNPC3" parent="." instance=ExtResource("8_y8lau")]
+position = Vector2(-78, -1)
