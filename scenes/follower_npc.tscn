@@ -1,12 +1,40 @@
-[gd_scene load_steps=39 format=3 uid="uid://qyjtd2ihs6p6"]
+[gd_scene load_steps=54 format=3 uid="uid://qyjtd2ihs6p6"]
 
 [ext_resource type="PackedScene" uid="uid://cgh462ipfngmi" path="res://scenes/npc.tscn" id="1_1av6q"]
 [ext_resource type="Script" path="res://scenes/follower_npc.gd" id="1_q2nxc"]
+[ext_resource type="Shader" uid="uid://dby42xd5pjrtu" path="res://Assets/sprites/hitflash.tres" id="3_0n43a"]
 [ext_resource type="Texture2D" uid="uid://bpauc51v0qnag" path="res://Assets/sprites/knight.png" id="3_07ijw"]
 [ext_resource type="PackedScene" uid="uid://ls5xuq0b2sbh" path="res://StateMachine/state_machine.tscn" id="5_6m42g"]
 [ext_resource type="Script" path="res://StateMachine/npc_states/npc_state_idle.gd" id="6_bjxoj"]
-[ext_resource type="Script" path="res://scripts/hurtbox.gd" id="7_gp58k"]
+[ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="7_0s3b6"]
 [ext_resource type="Script" path="res://StateMachine/npc_states/npc_state_running.gd" id="7_p0204"]
+[ext_resource type="Script" path="res://StateMachine/npc_states/npc_state_damaged.gd" id="7_slwb4"]
+[ext_resource type="Script" path="res://StateMachine/npc_states/npc_state_dead.gd" id="8_0ufwi"]
+[ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="8_ll31w"]
+[ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="11_b16a5"]
+[ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="12_ubm41"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ue5ct"]
+resource_local_to_scene = true
+shader = ExtResource("3_0n43a")
+shader_parameter/enabled = false
+shader_parameter/tint = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uieij"]
+atlas = ExtResource("3_07ijw")
+region = Rect2(0, 224, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7hd5x"]
+atlas = ExtResource("3_07ijw")
+region = Rect2(32, 224, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hr0n3"]
+atlas = ExtResource("3_07ijw")
+region = Rect2(64, 224, 32, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w4yfo"]
+atlas = ExtResource("3_07ijw")
+region = Rect2(96, 224, 32, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ignm"]
 atlas = ExtResource("3_07ijw")
@@ -108,6 +136,23 @@ region = Rect2(224, 96, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_uieij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7hd5x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hr0n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w4yfo")
+}],
+"loop": true,
+"name": &"death",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_5ignm")
 }, {
 "duration": 1.0,
@@ -194,6 +239,57 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_kvspn"]
+resource_name = "hit_flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../StateMachine/NPCStateDamaged")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_Damaged_to_Running"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_5lgjv"]
+length = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_crmrw"]
+_data = {
+"RESET": SubResource("Animation_5lgjv"),
+"hit_flash": SubResource("Animation_kvspn")
+}
+
 [sub_resource type="Animation" id="Animation_cxag2"]
 length = 0.001
 tracks/0/type = "value"
@@ -231,6 +327,90 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_75r1s"]
+resource_name = "damaged"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hit"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.466667, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("StateMachine/NPCStateDamaged")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.733333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"change_Damaged_to_Idle"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_gjtup"]
+resource_name = "death"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"death"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.333333, 0.666667, 1.03333),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.96667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_3pvsm"]
@@ -344,19 +524,19 @@ tracks/2/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j1p3y"]
 _data = {
 "RESET": SubResource("Animation_cxag2"),
+"damaged": SubResource("Animation_75r1s"),
+"death": SubResource("Animation_gjtup"),
 "idle": SubResource("Animation_3pvsm"),
 "running_left": SubResource("Animation_65e5g"),
 "running_right": SubResource("Animation_tdgmd")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_00wgs"]
-size = Vector2(6, 8)
-
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 65
 script = ExtResource("1_q2nxc")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
+material = SubResource("ShaderMaterial_ue5ct")
 scale = Vector2(0.484375, 0.458333)
 sprite_frames = SubResource("SpriteFrames_h4x55")
 autoplay = ""
@@ -370,18 +550,37 @@ script = ExtResource("6_bjxoj")
 [node name="NPCStateRunning" type="Node" parent="StateMachine"]
 script = ExtResource("7_p0204")
 
+[node name="NPCStateDamaged" type="Node" parent="StateMachine"]
+script = ExtResource("7_slwb4")
+
+[node name="NPCStateDead" type="Node" parent="StateMachine"]
+script = ExtResource("8_0ufwi")
+
+[node name="HitFlashAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../AnimationPlayer")
+libraries = {
+"": SubResource("AnimationLibrary_crmrw")
+}
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_j1p3y")
 }
 
-[node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 64
-collision_mask = 32
-script = ExtResource("7_gp58k")
+[node name="HealthComponent" parent="." instance=ExtResource("7_0s3b6")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(0, 1)
-shape = SubResource("RectangleShape2D_00wgs")
+[node name="Sensor" parent="." instance=ExtResource("11_b16a5")]
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[node name="Hit_box" parent="." groups=["enemy"] instance=ExtResource("8_ll31w")]
+collision_layer = 256
+
+[node name="HurtBox" parent="." groups=["enemy"] instance=ExtResource("12_ubm41")]
+position = Vector2(0, 2)
+scale = Vector2(0.7, 1)
+collision_layer = 128
+
+[connection signal="onDamageTook" from="HealthComponent" to="StateMachine/NPCStateIdle" method="_on_health_component_on_damage_took"]
+[connection signal="onDead" from="HealthComponent" to="StateMachine/NPCStateIdle" method="_on_health_component_on_dead"]
+[connection signal="player_detected" from="Sensor" to="StateMachine/NPCStateIdle" method="_on_sensor_player_detected"]
+[connection signal="player_lost" from="Sensor" to="StateMachine/NPCStateRunning" method="_on_sensor_player_lost"]
+[connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]

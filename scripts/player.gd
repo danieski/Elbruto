@@ -1,12 +1,15 @@
+
 extends CharacterBody2D
 
 
-const SPEED = 2530.0
+class_name player
+const SPEED = 3000.0
 const JUMP_VELOCITY = -300.0
 @onready var actionable_finder: Area2D = $Marker2D/ActionableFinder
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var marker_2d: Marker2D = $Marker2D
-var last_animation: String = "walk_down"
+var direction: Vector2 = Vector2(0,-1)
+
 
 
 func _physics_process(delta: float) -> void:
@@ -15,3 +18,9 @@ func _physics_process(delta: float) -> void:
 		if actionables.size() > 0:
 			actionables[0].action()
 			return
+
+
+func _on_health_component_on_damage_took() -> void:
+	animation_player.play("hit")
+	$CanvasLayer.update_hearts();
+	

@@ -1,8 +1,11 @@
-TileMapLayer
+AnimationPlayer
+CanvasLayer
+TextureRect
+Label
 CollisionShape2D
 Area2D
+TileMapLayer
 AnimatedSprite2D
-AnimationPlayer
 Node
 CharacterBody2D
 AnimationTree

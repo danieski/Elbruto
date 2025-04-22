@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://ke5ef86x02ne"]
+
+[ext_resource type="Texture2D" uid="uid://dny30ucgg30e5" path="res://Assets/sprites/heart pixel art 64x64.png" id="1_kpl6a"]
+[ext_resource type="Script" path="res://scripts/hud_player.gd" id="1_t685x"]
+[ext_resource type="Texture2D" uid="uid://bxnglljvyjmnv" path="res://Assets/sprites/emptyheart.png" id="2_58crh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t685x")
+
+[node name="BlackHeart3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 916.0
+offset_top = 8.0
+offset_right = 980.0
+offset_bottom = 72.0
+texture = ExtResource("2_58crh")
+
+[node name="BlackHeart2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 7.0
+offset_right = 1048.0
+offset_bottom = 71.0
+texture = ExtResource("2_58crh")
+
+[node name="BlackHeart" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 6.0
+offset_right = 1114.0
+offset_bottom = 70.0
+texture = ExtResource("2_58crh")
+
+[node name="Heart" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1050.0
+offset_top = 6.0
+offset_right = 1114.0
+offset_bottom = 70.0
+texture = ExtResource("1_kpl6a")
+
+[node name="Heart2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 984.0
+offset_top = 7.0
+offset_right = 1048.0
+offset_bottom = 71.0
+texture = ExtResource("1_kpl6a")
+
+[node name="Heart3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 916.0
+offset_top = 8.0
+offset_right = 980.0
+offset_bottom = 72.0
+texture = ExtResource("1_kpl6a")

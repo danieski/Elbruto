@@ -1,5 +1,6 @@
-res://Assets/gfx
 res://Assets/sprites
-res://scripts
-res://StateMachine/
 res://scenes
+res://scripts
+res://Assets/gfx
+res://
+res://StateMachine/
