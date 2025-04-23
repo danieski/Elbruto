@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://05nawox6sapi"]
 
-[ext_resource type="Script" path="res://scenes/canvas_layer.gd" id="1_nfobj"]
+[ext_resource type="Script" path="res://scripts/canvas_layer.gd" id="1_nfobj"]
 [ext_resource type="Texture2D" uid="uid://bxnglljvyjmnv" path="res://Assets/sprites/emptyheart.png" id="2_s8n5s"]
 [ext_resource type="Texture2D" uid="uid://dny30ucgg30e5" path="res://Assets/sprites/heart pixel art 64x64.png" id="3_qbtl2"]
 
@@ -48,3 +48,14 @@ offset_top = 8.0
 offset_right = 980.0
 offset_bottom = 72.0
 texture = ExtResource("3_qbtl2")
+
+[node name="GameOver" type="Label" parent="."]
+visible = false
+offset_left = 83.0
+offset_top = 159.0
+offset_right = 560.0
+offset_bottom = 305.0
+scale = Vector2(2, 2)
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -8,6 +8,8 @@ const JUMP_VELOCITY = -300.0
 @onready var actionable_finder: Area2D = $Marker2D/ActionableFinder
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var marker_2d: Marker2D = $Marker2D
+@onready var hud: CanvasLayer = $HUD
+
 var direction: Vector2 = Vector2(0,-1)
 
 
@@ -22,5 +24,5 @@ func _physics_process(delta: float) -> void:
 
 func _on_health_component_on_damage_took() -> void:
 	animation_player.play("hit")
-	$CanvasLayer.update_hearts();
+	hud.update_hearts();
 	

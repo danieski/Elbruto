@@ -1,7 +1,10 @@
-AnimationPlayer
 CanvasLayer
 TextureRect
+Button
+VBoxContainer
+ColorRect
 Label
+AnimationPlayer
 CollisionShape2D
 Area2D
 TileMapLayer

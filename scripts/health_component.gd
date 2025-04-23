@@ -16,8 +16,8 @@ func take_heal(value: int):
 func set_health(value: int):
 	pass
 
-func dead():
-	onDead.emit()
+
+	
 
 
 func _on_hit_box_on_health_changed(value) -> void:
@@ -29,6 +29,6 @@ func _on_hit_box_on_health_changed(value) -> void:
 	if old_health != current_health:
 		onHealthChanged.emit(current_health)
 	if current_health <= 0:
-		dead()
+		onDead.emit()
 	elif current_health >= 0 and current_health < old_health:
 		onDamageTook.emit()
