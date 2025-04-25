@@ -1154,6 +1154,7 @@ texture = ExtResource("1_2lvlb")
 0:2/animation_frame_2/duration = 0.2
 0:2/animation_frame_3/duration = 0.2
 0:2/0 = 0
+15:8/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_4lwyq"]
 terrain_set_0/mode = 0
@@ -2639,46 +2640,36 @@ position_smoothing_enabled = true
 [node name="HUD" type="CanvasLayer" parent="Player"]
 script = ExtResource("8_obttq")
 
-[node name="BlackHeart3" type="TextureRect" parent="Player/HUD"]
-offset_left = 916.0
-offset_top = 8.0
-offset_right = 980.0
-offset_bottom = 72.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="Player/HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BlackHeart3" type="TextureRect" parent="Player/HUD/HBoxContainer2"]
+layout_mode = 2
 texture = ExtResource("9_afl5d")
 
-[node name="BlackHeart2" type="TextureRect" parent="Player/HUD"]
-offset_left = 984.0
-offset_top = 7.0
-offset_right = 1048.0
-offset_bottom = 71.0
+[node name="BlackHeart2" type="TextureRect" parent="Player/HUD/HBoxContainer2"]
+layout_mode = 2
 texture = ExtResource("9_afl5d")
 
-[node name="BlackHeart" type="TextureRect" parent="Player/HUD"]
-offset_left = 1050.0
-offset_top = 6.0
-offset_right = 1114.0
-offset_bottom = 70.0
+[node name="BlackHeart" type="TextureRect" parent="Player/HUD/HBoxContainer2"]
+layout_mode = 2
 texture = ExtResource("9_afl5d")
 
-[node name="Heart" type="TextureRect" parent="Player/HUD"]
-offset_left = 1050.0
-offset_top = 6.0
-offset_right = 1114.0
-offset_bottom = 70.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Player/HUD"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Heart" type="TextureRect" parent="Player/HUD/HBoxContainer"]
+layout_mode = 2
 texture = ExtResource("10_w6j0p")
 
-[node name="Heart2" type="TextureRect" parent="Player/HUD"]
-offset_left = 984.0
-offset_top = 7.0
-offset_right = 1048.0
-offset_bottom = 71.0
+[node name="Heart2" type="TextureRect" parent="Player/HUD/HBoxContainer"]
+layout_mode = 2
 texture = ExtResource("10_w6j0p")
 
-[node name="Heart3" type="TextureRect" parent="Player/HUD"]
-offset_left = 916.0
-offset_top = 8.0
-offset_right = 980.0
-offset_bottom = 72.0
+[node name="Heart3" type="TextureRect" parent="Player/HUD/HBoxContainer"]
+layout_mode = 2
 texture = ExtResource("10_w6j0p")
 
 [node name="GameOver" type="Label" parent="Player/HUD"]

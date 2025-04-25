@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var hearts := [$Heart,$Heart2,$Heart3]
+@onready var hearts := [$HBoxContainer/Heart,$HBoxContainer/Heart2,$HBoxContainer/Heart3]
 @onready var game_over: Label = $GameOver
 
 var lifeCounter=0;

@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="11_b16a5"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="12_ubm41"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_oqdw0"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lsye4"]
 resource_local_to_scene = true
 shader = ExtResource("3_0n43a")
 shader_parameter/enabled = false
@@ -468,7 +468,7 @@ collision_layer = 65
 script = ExtResource("1_q2nxc")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
-material = SubResource("ShaderMaterial_oqdw0")
+material = SubResource("ShaderMaterial_lsye4")
 position = Vector2(0.999999, 1)
 scale = Vector2(1, 0.9375)
 sprite_frames = SubResource("SpriteFrames_h4x55")

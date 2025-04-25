@@ -21,7 +21,5 @@ func on_input(event):
 	elif Input.is_action_pressed("ui_accept"):
 			state_machine.change_to("PlayerStateAttack")
 
-
-
 func _on_health_component_on_dead() -> void:
 	state_machine.change_to("PlayerStateDead")
