@@ -1438,7 +1438,6 @@ script = ExtResource("7_gpo1w")
 [node name="HealthComponent" parent="." instance=ExtResource("8_0bn53")]
 
 [node name="HurtBox" parent="." instance=ExtResource("7_032fx")]
-collision_mask = 256
 
 [node name="CollisionShape2D2" parent="HurtBox" index="0"]
 position = Vector2(0, 5)
@@ -1446,8 +1445,7 @@ disabled = true
 
 [node name="Hit_box" parent="." instance=ExtResource("8_5ipib")]
 position = Vector2(0, -9)
-scale = Vector2(0.6, 0.8)
-collision_mask = 128
+scale = Vector2(0.5, 0.6)
 
 [connection signal="onDamageTook" from="HealthComponent" to="." method="_on_health_component_on_damage_took"]
 [connection signal="onDead" from="HealthComponent" to="StateMachine/PlayerStateIdle" method="_on_health_component_on_dead"]

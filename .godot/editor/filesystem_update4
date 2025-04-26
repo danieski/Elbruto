@@ -1,12 +1,11 @@
-res://scenes/Player.tscn
-res://Assets/sprites/hitflash.tres
-res://scripts/health_component.gd
-res://scenes/game.tscn
 res://scenes/follower_npc.tscn
+res://Assets/sprites/hitflash.tres
+res://scenes/Player.tscn
+res://scenes/game.tscn
 res://scenes/hurt_box.tscn
 res://scenes/health_component.tscn
 res://scenes/hit_box.tscn
 res://scenes/sensor.tscn
 res://scenes/Menu.tscn
 res://scenes/Options.tscn
-res://StateMachine/player_states/player_state_idle.gd
+res://scripts/hurt_box.gd

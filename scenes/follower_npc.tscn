@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="11_b16a5"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="12_ubm41"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_lsye4"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p841w"]
 resource_local_to_scene = true
 shader = ExtResource("3_0n43a")
 shader_parameter/enabled = false
@@ -468,7 +468,7 @@ collision_layer = 65
 script = ExtResource("1_q2nxc")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
-material = SubResource("ShaderMaterial_lsye4")
+material = SubResource("ShaderMaterial_p841w")
 position = Vector2(0.999999, 1)
 scale = Vector2(1, 0.9375)
 sprite_frames = SubResource("SpriteFrames_h4x55")
@@ -505,12 +505,10 @@ libraries = {
 [node name="Sensor" parent="." instance=ExtResource("11_b16a5")]
 
 [node name="Hit_box" parent="." groups=["enemy"] instance=ExtResource("8_ll31w")]
-collision_layer = 256
 
 [node name="HurtBox" parent="." groups=["enemy"] instance=ExtResource("12_ubm41")]
 position = Vector2(0, 2)
 scale = Vector2(0.7, 1)
-collision_layer = 128
 
 [connection signal="onDamageTook" from="HealthComponent" to="StateMachine/NPCStateIdle" method="_on_health_component_on_damage_took"]
 [connection signal="onDead" from="HealthComponent" to="StateMachine/NPCStateIdle" method="_on_health_component_on_dead"]
