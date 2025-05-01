@@ -1,0 +1,2 @@
+CharacterStats
+Resource

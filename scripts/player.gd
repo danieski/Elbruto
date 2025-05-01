@@ -9,7 +9,7 @@ const JUMP_VELOCITY = -300.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var hud: CanvasLayer = $HUD
-
+@export var stats: CharacterStats
 var direction: Vector2 = Vector2(0,-1)
 
 

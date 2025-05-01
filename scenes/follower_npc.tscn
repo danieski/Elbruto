@@ -1,7 +1,8 @@
-[gd_scene load_steps=46 format=3 uid="uid://qyjtd2ihs6p6"]
+[gd_scene load_steps=47 format=3 uid="uid://qyjtd2ihs6p6"]
 
 [ext_resource type="PackedScene" uid="uid://cgh462ipfngmi" path="res://scenes/npc.tscn" id="1_1av6q"]
 [ext_resource type="Script" path="res://scripts/follower_npc.gd" id="1_q2nxc"]
+[ext_resource type="Resource" uid="uid://7ca27xd7g40d" path="res://resources/red.tres" id="2_rp5wx"]
 [ext_resource type="Shader" uid="uid://dby42xd5pjrtu" path="res://Assets/sprites/hitflash.tres" id="3_0n43a"]
 [ext_resource type="Texture2D" uid="uid://bpauc51v0qnag" path="res://Assets/sprites/knight.png" id="3_07ijw"]
 [ext_resource type="Texture2D" uid="uid://gj84krdhayoo" path="res://Assets/sprites/sparks.png" id="4_5cv3o"]
@@ -16,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="11_b16a5"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="12_ubm41"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p841w"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k4d2q"]
 resource_local_to_scene = true
 shader = ExtResource("3_0n43a")
 shader_parameter/enabled = false
@@ -466,12 +467,14 @@ _data = {
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 65
 script = ExtResource("1_q2nxc")
+stats = ExtResource("2_rp5wx")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
-material = SubResource("ShaderMaterial_p841w")
+material = SubResource("ShaderMaterial_k4d2q")
 position = Vector2(0.999999, 1)
 scale = Vector2(1, 0.9375)
 sprite_frames = SubResource("SpriteFrames_h4x55")
+animation = &"idle"
 autoplay = ""
 
 [node name="StateMachine" parent="." node_paths=PackedStringArray("default_state") instance=ExtResource("5_6m42g")]
@@ -507,7 +510,7 @@ libraries = {
 [node name="Hit_box" parent="." groups=["enemy"] instance=ExtResource("8_ll31w")]
 
 [node name="HurtBox" parent="." groups=["enemy"] instance=ExtResource("12_ubm41")]
-position = Vector2(0, 2)
+position = Vector2(0, 1)
 scale = Vector2(0.7, 1)
 
 [connection signal="onDamageTook" from="HealthComponent" to="StateMachine/NPCStateIdle" method="_on_health_component_on_damage_took"]

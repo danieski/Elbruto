@@ -1,6 +1,7 @@
-[gd_scene load_steps=100 format=3 uid="uid://cgeqxpr88y82k"]
+[gd_scene load_steps=101 format=3 uid="uid://cgeqxpr88y82k"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vrn3r"]
+[ext_resource type="Resource" uid="uid://7ca27xd7g40d" path="res://resources/red.tres" id="2_27wbp"]
 [ext_resource type="Texture2D" uid="uid://btpatvbckdt8t" path="res://Assets/sprites/Player.png" id="2_eaq0y"]
 [ext_resource type="Shader" uid="uid://dby42xd5pjrtu" path="res://Assets/sprites/hitflash.tres" id="2_spt2x"]
 [ext_resource type="Script" path="res://StateMachine/state_machine.gd" id="4_mbaen"]
@@ -669,7 +670,7 @@ tracks/7/keys = {
 
 [sub_resource type="Animation" id="Animation_auhaj"]
 resource_name = "attack_down"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -677,7 +678,7 @@ tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.470656),
+"times": PackedFloat32Array(0, 0.1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -713,7 +714,7 @@ tracks/3/path = NodePath("HurtBox/CollisionShape2D2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -733,7 +734,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_hsbf7"]
 resource_name = "attack_left"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -741,7 +742,7 @@ tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.470656),
+"times": PackedFloat32Array(0, 0.366667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -801,7 +802,7 @@ tracks/5/path = NodePath("HurtBox/CollisionShape2D2:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -809,7 +810,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_bo6f0"]
 resource_name = "attack_right"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -817,7 +818,7 @@ tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.470656),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -877,7 +878,7 @@ tracks/5/path = NodePath("HurtBox/CollisionShape2D2:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -885,7 +886,7 @@ tracks/5/keys = {
 
 [sub_resource type="Animation" id="Animation_ml7fq"]
 resource_name = "attack_up"
-length = 0.5
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -893,7 +894,7 @@ tracks/0/path = NodePath("AnimatedSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.470656),
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0, 3]
@@ -929,7 +930,7 @@ tracks/3/path = NodePath("HurtBox/CollisionShape2D2:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
+"times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -1390,6 +1391,7 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_vrn3r")
+stats = ExtResource("2_27wbp")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ue1tx")

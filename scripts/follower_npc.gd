@@ -1,4 +1,5 @@
 extends CharacterBody2D
+@export var stats : CharacterStats
 @onready var player: CharacterBody2D = $"../Player"
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
@@ -6,9 +7,16 @@ extends CharacterBody2D
 
 
 const SPEED = 30.0
-const JUMP_VELOCITY = -400.0
-const TRAKING_RADIUS = 50
 
+func _ready() -> void:
+	selectColor()
+	pass
 func _physics_process(delta: float) -> void:
 	
 	pass
+func selectColor():
+	match stats.color:
+		0:
+			animated_sprite_2d.modulate = Color(255,1,0)
+		1:
+			animated_sprite_2d.modulate = Color(0,0,255)
