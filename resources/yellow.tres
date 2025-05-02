@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_jjmc2")
 damage = 40
-hp = 5
+hp = 999
 color = 1

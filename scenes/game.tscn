@@ -1,20 +1,18 @@
-[gd_scene load_steps=24 format=4 uid="uid://ciy1qmtn641cs"]
+[gd_scene load_steps=22 format=4 uid="uid://ciy1qmtn641cs"]
 
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_2lvlb"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="1_vkvpy"]
 [ext_resource type="Texture2D" uid="uid://c8trrvbqut3l4" path="res://Assets/gfx/objects.png" id="2_erti1"]
-[ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="4_dj78l"]
 [ext_resource type="Script" path="res://scripts/actionable (2).gd" id="4_kytas"]
 [ext_resource type="PackedScene" uid="uid://cdh8p3qpc5fap" path="res://scenes/coin.tscn" id="4_vkgvq"]
 [ext_resource type="Resource" uid="uid://c5jrgfrom2os1" path="res://dialog/dialogue.dialogue" id="5_ifr8u"]
 [ext_resource type="PackedScene" uid="uid://cgh462ipfngmi" path="res://scenes/npc.tscn" id="7_t3anb"]
 [ext_resource type="Script" path="res://scripts/canvas_layer.gd" id="8_obttq"]
-[ext_resource type="PackedScene" uid="uid://qyjtd2ihs6p6" path="res://scenes/follower_npc.tscn" id="8_y8lau"]
 [ext_resource type="Texture2D" uid="uid://bxnglljvyjmnv" path="res://Assets/sprites/emptyheart.png" id="9_afl5d"]
 [ext_resource type="Texture2D" uid="uid://dny30ucgg30e5" path="res://Assets/sprites/heart pixel art 64x64.png" id="10_w6j0p"]
 [ext_resource type="PackedScene" uid="uid://b47t7wxt7kiv0" path="res://scenes/slime.tscn" id="12_t7v5g"]
 [ext_resource type="Resource" uid="uid://7ca27xd7g40d" path="res://resources/red.tres" id="13_d5407"]
-[ext_resource type="Resource" uid="uid://bqd1edpqruhao" path="res://resources/yellow.tres" id="14_nm0et"]
+[ext_resource type="PackedScene" uid="uid://qyjtd2ihs6p6" path="res://scenes/bat_enemy.tscn" id="14_3dilc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5srcl"]
 texture = ExtResource("1_2lvlb")
@@ -2671,9 +2669,6 @@ tile_set = SubResource("TileSet_dfu16")
 
 [node name="Area2D" parent="Coin" instance=ExtResource("4_vkgvq")]
 
-[node name="FireHurtBox" parent="." instance=ExtResource("4_dj78l")]
-position = Vector2(104, -3)
-
 [node name="actionable" type="Area2D" parent="."]
 position = Vector2(15, -15)
 collision_layer = 16
@@ -2745,18 +2740,23 @@ vertical_alignment = 1
 [node name="Npc" parent="." instance=ExtResource("7_t3anb")]
 position = Vector2(52, -26)
 
-[node name="FollowerNPC2" parent="." instance=ExtResource("8_y8lau")]
-position = Vector2(-66, 101)
-stats = ExtResource("14_nm0et")
-
 [node name="MapBorders" type="StaticBody2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapBorders"]
 polygon = PackedVector2Array(-477, -102, -477, -132, -348, -130, -125, -107, -100, -104, -100, -124, -75, -122, -75, -103, 380, -104, 378, 139, 403, 151, 437, 157, 436, 274, -292, 279, -292, -20, -348, -23, -343, 303, -515, 308, -510, 285, -480, 285, -479, -45, -498, -45, -498, -34, -591, -34, -589, -111, -501, -108, -498, -98, -485, -98, -504, -140, -632, -124, -698, 29, -612, 301, -523, 385, 512, 357, 529, 47, 360, -197, -172, -217, -483, -191, -483, -113)
 
-[node name="slime" parent="." node_paths=PackedStringArray("followAt") instance=ExtResource("12_t7v5g")]
-position = Vector2(-191, 101)
-collision_layer = 2
-followAt = NodePath("../FollowerNPC2")
+[node name="BatEnemy" parent="." instance=ExtResource("14_3dilc")]
+position = Vector2(-78, 9)
+
+[node name="slime" parent="." instance=ExtResource("12_t7v5g")]
+position = Vector2(-78, 9)
+collision_layer = 8
+collision_mask = 2
 stats = ExtResource("13_d5407")
+
+[editable path="Player"]
+[editable path="Player/HurtBox"]
+[editable path="slime"]
+[editable path="slime/HurtBox"]
+[editable path="slime/Hit_box"]

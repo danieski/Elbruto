@@ -10,5 +10,7 @@ func on_physics_process(delta):
 	controlled_node.move_and_slide()
 
 
-func _on_sensor_player_lost() -> void:
+func _on_sensor_player_lost() ->  void:
+	print("player lost")
+	print(get_parent().get_parent())
 	state_machine.change_to("NPCStateIdle")

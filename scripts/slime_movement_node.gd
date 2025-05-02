@@ -5,11 +5,10 @@ extends Node
 
 
 func _ready() -> void:
-	slime.anim.play("walking")
+	animation_player.play("walking")
 	pass
 	
 func _physics_process(delta: float) -> void:
-
 	slime.move_and_slide()
 
 func jump():
@@ -20,7 +19,6 @@ func jump():
 		noJump()
 	
 func noJump():
-	#slime.anim.play("idle")
 	slime.velocity = Vector2.ZERO
 
 
@@ -33,13 +31,16 @@ func _on_health_component_on_damage_took() -> void:
 
 
 func _on_health_component_on_dead() -> void:
+	var slimeMinion = slime.slime_scene.instantiate()
+	slimeMinion.position = slime.position + Vector2(25, 5)
+	slime.get_parent().add_child(slimeMinion)
 	slime.anim.play("dead")
-	pass # Replace with function body.
 
 
-func _on_sensor_player_detected() -> void:
-	slime.actuallyFollowing = slime.followAt
 
+func _on_sensor_player_detected(body: Node) -> void:
+	slime.followAt = body
+	jump()
 
 func _on_sensor_player_lost() -> void:
-	slime.actuallyFollowing = null
+	slime.followAt = null

@@ -4,4 +4,4 @@ const SPEED = 10
 @export var anim: AnimationPlayer
 @export var followAt: CharacterBody2D
 @export var stats: CharacterStats
-@onready var actuallyFollowing = followAt
+var slime_scene: PackedScene = preload("res://scenes/miniSlime.tscn")

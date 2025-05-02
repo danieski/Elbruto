@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_so8bu")
 damage = 40
-hp = 3
+hp = 1
 color = 0

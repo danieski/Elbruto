@@ -1,4 +1,4 @@
-extends Area2D
+xtends Area2D
 
 @onready var timer: Timer = $Timer
 

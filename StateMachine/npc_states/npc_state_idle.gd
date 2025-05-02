@@ -18,4 +18,5 @@ func _on_health_component_on_dead() -> void:
 
 
 func _on_sensor_player_detected() -> void:
+	print("destected")
 	state_machine.change_to("NPCStateRunning")
