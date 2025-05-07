@@ -1,0 +1,109 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_7weu1"]
+
+[resource]
+script = ExtResource("1_7weu1")
+using_states = PackedStringArray()
+titles = {
+"this_is_a_node_title": "2"
+}
+character_names = PackedStringArray()
+first_title = "2"
+lines = {
+"1": {
+"id": "1",
+"next_id": "2",
+"text": "this_is_a_node_title",
+"type": &"title"
+},
+"2": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "2",
+"next_id": "3",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "Quieres salir?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Quieres salir?",
+"type": &"dialogue"
+},
+"3": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "3",
+"next_id": "4",
+"next_id_after": "9",
+"notes": "",
+"responses": PackedStringArray("3", "7"),
+"tags": PackedStringArray(),
+"text": "Si",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Si",
+"type": &"response"
+},
+"4": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "4",
+"next_id": "5",
+"notes": "",
+"parent_id": "3",
+"tags": PackedStringArray(),
+"text": "Salimos.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Salimos.",
+"type": &"dialogue"
+},
+"5": {
+"id": "5",
+"mutation": {
+"expression": Array[Dictionary]([{
+"function": "getOutside",
+"type": &"function",
+"value": Array[Array]([])
+}]),
+"is_blocking": true
+},
+"next_id": "9",
+"parent_id": "3",
+"type": &"mutation"
+},
+"7": {
+"character": "",
+"character_replacements": Array[Dictionary]([]),
+"id": "7",
+"next_id": "8",
+"next_id_after": "9",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "No",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "No",
+"type": &"response"
+},
+"8": {
+"id": "8",
+"is_snippet": false,
+"next_id": "end",
+"parent_id": "7",
+"type": &"goto"
+},
+"9": {
+"id": "9",
+"is_snippet": false,
+"next_id": "end",
+"type": &"goto"
+}
+}
+raw_text = "~ this_is_a_node_title
+Quieres salir?
+- Si
+	Salimos.
+	do getOutside()
+
+- No
+	=> END
+=> END"
+metadata/dialogue_manager_version = "2.45.0"

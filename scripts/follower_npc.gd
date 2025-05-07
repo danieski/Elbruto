@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var hit_flash_animation_player: AnimationPlayer = $HitFlashAnimationPlayer
+
 var isDead : bool = false
 
 var followAt

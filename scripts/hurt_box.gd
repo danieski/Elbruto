@@ -6,9 +6,6 @@ func _ready() -> void:
 	
 
 func hit(area):
-	print("I am: ", self.get_parent().name)
-	print("Im in the group: ",self.get_groups()[0])
-	print("Im colliding wiht mr ", area.get_parent().name)
-	print("Im in the same group as the area im touching: ", area.is_in_group(self.get_groups()[0]))
+	#Gotta check that you are in different group 
 	if area is HitBox and !area.is_in_group(self.get_groups()[0]) 	:
 		area.take_damage(damage)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://duaqpixbcxw7d"]
+
+[ext_resource type="Script" path="res://scripts/spawner.gd" id="1_vpckd"]
+
+[node name="Spawner" type="Node"]
+script = ExtResource("1_vpckd")
+
+[node name="roundTimer2" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[node name="checkEnemys2" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="roundTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="checkEnemys" to="." method="_on_check_enemys_timeout"]
+[connection signal="timeout" from="roundTimer2" to="." method="_on_round_timer_2_timeout"]
+[connection signal="timeout" from="checkEnemys2" to="." method="_on_check_enemys_2_timeout"]

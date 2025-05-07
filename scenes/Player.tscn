@@ -1,4 +1,4 @@
-[gd_scene load_steps=101 format=3 uid="uid://cgeqxpr88y82k"]
+[gd_scene load_steps=103 format=3 uid="uid://cgeqxpr88y82k"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vrn3r"]
 [ext_resource type="Resource" uid="uid://bqd1edpqruhao" path="res://resources/yellow.tres" id="2_5ite7"]
@@ -976,22 +976,6 @@ tracks/1/keys = {
 "values": [0, 3]
 }
 
-[sub_resource type="Animation" id="Animation_j6thu"]
-resource_name = "hit"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("AnimatedSprite:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Color(1, 0, 0, 1), Color(1, 0, 0, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_fgaib"]
 resource_name = "idle_down"
 length = 0.5
@@ -1376,7 +1360,6 @@ _data = {
 "attack_right": SubResource("Animation_bo6f0"),
 "attack_up": SubResource("Animation_ml7fq"),
 "dead": SubResource("Animation_k7hpi"),
-"hit": SubResource("Animation_j6thu"),
 "idle_down": SubResource("Animation_fgaib"),
 "idle_left": SubResource("Animation_x5n6b"),
 "idle_right": SubResource("Animation_2sti5"),
@@ -1385,6 +1368,43 @@ _data = {
 "walk_left": SubResource("Animation_8g4ov"),
 "walk_right": SubResource("Animation_s0uih"),
 "walk_up": SubResource("Animation_0kjok")
+}
+
+[sub_resource type="Animation" id="Animation_3t7as"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_bw3kb"]
+resource_name = "hit"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i247y"]
+_data = {
+"RESET": SubResource("Animation_3t7as"),
+"hit": SubResource("Animation_bw3kb")
 }
 
 [node name="Player" type="CharacterBody2D"]
@@ -1448,6 +1468,11 @@ disabled = true
 [node name="Hit_box" parent="." groups=["player"] instance=ExtResource("8_5ipib")]
 position = Vector2(0, -9)
 scale = Vector2(0.5, 0.6)
+
+[node name="HitFlashAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i247y")
+}
 
 [connection signal="onDamageTook" from="HealthComponent" to="." method="_on_health_component_on_damage_took"]
 [connection signal="onDead" from="HealthComponent" to="StateMachine/PlayerStateIdle" method="_on_health_component_on_dead"]
