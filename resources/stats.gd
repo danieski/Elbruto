@@ -7,5 +7,5 @@ extends Resource
 enum COLORS{
 	RED,
 	YELLOW,
-	BLUE
+	GREEN
 }

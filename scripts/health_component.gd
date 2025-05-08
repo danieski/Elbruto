@@ -1,7 +1,7 @@
 extends Area2D
 class_name HealthComponent
 signal onDead
-signal onDamageTook
+signal onDamageTaken
 signal onHealthChanged(health: int)
 
 var max_health: int
@@ -25,4 +25,4 @@ func _on_hit_box_on_health_changed(value) -> void:
 		onDead.emit()
 	elif current_health >= 0 and current_health < old_health:
 		print("ondamagetook")
-		onDamageTook.emit()
+		onDamageTaken.emit()

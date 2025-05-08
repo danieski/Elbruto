@@ -1,7 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://dcudw60a2ug5p"]
+[gd_scene load_steps=38 format=3 uid="uid://dcudw60a2ug5p"]
 
 [ext_resource type="Script" path="res://scripts/mini_slime.gd" id="1_7lk0a"]
-[ext_resource type="Resource" uid="uid://7ca27xd7g40d" path="res://resources/red.tres" id="2_ngpas"]
+[ext_resource type="Script" path="res://resources/stats.gd" id="2_fuqlw"]
 [ext_resource type="Material" uid="uid://b2sg6ojt8kw4f" path="res://Assets/sprites/hit_flash_mat.tres" id="2_njq1s"]
 [ext_resource type="Texture2D" uid="uid://gj84krdhayoo" path="res://Assets/sprites/sparks.png" id="2_uhkjv"]
 [ext_resource type="Texture2D" uid="uid://dfyj0mxfdy1um" path="res://Assets/sprites/slime_green.png" id="3_mp8kf"]
@@ -9,6 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="6_6a6k6"]
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="6_wjbqy"]
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="8_nq8li"]
+
+[sub_resource type="Resource" id="Resource_2yky6"]
+script = ExtResource("2_fuqlw")
+damage = 40
+hp = 1
+color = 2
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xg2qo"]
 atlas = ExtResource("2_uhkjv")
@@ -426,7 +432,7 @@ _data = {
 [node name="MiniSlime" type="CharacterBody2D"]
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_7lk0a")
-stats = ExtResource("2_ngpas")
+stats = SubResource("Resource_2yky6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = ExtResource("2_njq1s")
@@ -443,7 +449,8 @@ libraries = {
 }
 
 [node name="HurtBox" parent="." groups=["enemy"] instance=ExtResource("5_kajem")]
-position = Vector2(1, 20)
+position = Vector2(0.3, 3.82)
+scale = Vector2(0.78, 1.365)
 
 [node name="Hit_box" parent="." groups=["enemy"] instance=ExtResource("6_6a6k6")]
 position = Vector2(1, 1)
@@ -463,7 +470,6 @@ libraries = {
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
 [connection signal="player_detected" from="Sensor" to="." method="_on_sensor_player_detected"]
 [connection signal="player_lost" from="Sensor" to="." method="_on_sensor_player_lost"]
-[connection signal="onDamageTook" from="HealthComponent" to="." method="_on_health_component_on_damage_took"]
 [connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
 
 [editable path="HurtBox"]

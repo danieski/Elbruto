@@ -1,6 +1,9 @@
+res://scripts/canvas_layer.gd
 res://scenes/game.tscn
 res://Assets/sprites/hitflash.tres
 res://Assets/sprites/hit_flash_mat.tres
+res://scripts/health_component.gd
+res://scripts/player.gd
 res://scenes/Player.tscn
 res://scenes/interior.tscn
 res://scenes/Menu.tscn
@@ -9,6 +12,7 @@ res://scenes/miniSlime.tscn
 res://scenes/water_lvl.tscn
 res://scenes/playerHud.tscn
 res://scenes/spawner.tscn
-res://scripts/canvas_layer.gd
-res://scripts/spawner.gd
-res://scripts/slime_movement_node.gd
+res://scenes/sword.tscn
+res://scenes/castillo.tscn
+res://scripts/global.gd
+res://scripts/menu.gd

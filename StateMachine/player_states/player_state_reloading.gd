@@ -18,9 +18,7 @@ func on_physics_process(delta: float) -> void:
 func on_input(event):
 	if Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_right"):
 			state_machine.change_to("PlayerStateRunning")
-	elif Input.is_action_pressed("ui_accept"):
-		if(!controlled_node.isReloading):
-			state_machine.change_to("PlayerStateAttack")
+
 
 func _on_health_component_on_dead() -> void:
 	state_machine.change_to("PlayerStateDead")

@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://duaqpixbcxw7d" path="res://scenes/spawner.tscn" id="1_4fswl"]
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_gqfdu"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="2_2ohj3"]
-[ext_resource type="PackedScene" uid="uid://p5q3inhfkki8" path="res://scenes/playerHud.tscn" id="3_yky8t"]
+[ext_resource type="Resource" uid="uid://bm3ynixyvxggl" path="res://resources/yellow_enemy.tres" id="5_cx555"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fwsfd"]
 texture = ExtResource("1_gqfdu")
@@ -1098,12 +1098,8 @@ position = Vector2(-25, 27)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
 
-[node name="HUD" parent="Player" instance=ExtResource("3_yky8t")]
-
 [node name="Spawner" parent="." instance=ExtResource("1_4fswl")]
 number_of_enemys = 7
+enemyStats = ExtResource("5_cx555")
 
-[connection signal="changingRound" from="Spawner" to="Player/HUD" method="_on_spawner_changing_round"]
-
-[editable path="Player/HUD"]
 [editable path="Spawner"]

@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="1_vkvpy"]
 [ext_resource type="Texture2D" uid="uid://c8trrvbqut3l4" path="res://Assets/gfx/objects.png" id="2_erti1"]
 [ext_resource type="PackedScene" uid="uid://cdh8p3qpc5fap" path="res://scenes/coin.tscn" id="4_vkgvq"]
-[ext_resource type="PackedScene" uid="uid://p5q3inhfkki8" path="res://scenes/playerHud.tscn" id="5_5m50w"]
 [ext_resource type="PackedScene" uid="uid://duaqpixbcxw7d" path="res://scenes/spawner.tscn" id="6_keefx"]
+[ext_resource type="Resource" uid="uid://d1jhvfkl7x74w" path="res://resources/green_enemy.tres" id="7_6v1cd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5srcl"]
 texture = ExtResource("1_2lvlb")
@@ -2682,8 +2682,6 @@ limit_right = 450
 limit_bottom = 280
 position_smoothing_enabled = true
 
-[node name="HUD" parent="Player" instance=ExtResource("5_5m50w")]
-
 [node name="MapBorders" type="StaticBody2D" parent="."]
 collision_mask = 2
 
@@ -2692,10 +2690,8 @@ polygon = PackedVector2Array(-477, -102, -477, -132, -294, -26, -293, -102, -100
 
 [node name="Spawner" parent="." instance=ExtResource("6_keefx")]
 number_of_enemys = 7
-
-[connection signal="changingRound" from="Spawner" to="Player/HUD" method="_on_spawner_changing_round"]
+enemyStats = ExtResource("7_6v1cd")
 
 [editable path="Player"]
 [editable path="Player/HurtBox"]
-[editable path="Player/HUD"]
 [editable path="Spawner"]

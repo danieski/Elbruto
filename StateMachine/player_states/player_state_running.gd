@@ -21,6 +21,9 @@ func on_physics_process(delta):
 		controlled_node.velocity.y = controlled_node.SPEED*delta
 		controlled_node.direction=Vector2(0,-1)
 		controlled_node.animation_player.play("walk_down")	
+	if Input.is_action_just_pressed("ui_accept"):
+		if(!controlled_node.isReloading):
+			state_machine.change_to("PlayerStateAttack")
 	if controlled_node.velocity == Vector2.ZERO:
 		state_machine.change_to("PlayerStateIdle")
 		

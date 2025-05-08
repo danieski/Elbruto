@@ -9,7 +9,7 @@ var arrayEnemigos = []
 var enemysSpawned =0
 var lastEnemysWave
 signal changingRound
-
+@export var enemyStats: Resource
 
 func _ready() -> void:
 	
@@ -19,24 +19,28 @@ func _ready() -> void:
 	
 func preparePool():
 	for i in number_of_enemys:
-		arrayEnemigos.append(slime_scene.instantiate())
+		match randi_range(1,2):
+			1:
+				arrayEnemigos.append(slime_scene.instantiate())
+			2:
+				arrayEnemigos.append(bat_scene.instantiate())
 		
 func spawnRound():
 	var nEnemysRound = round * nEnemysEachRound
 	
 	for i in range(nEnemysRound):		
-		spawnSlime(enemysSpawned ,selectSpawner())
+		spawnEnemy(enemysSpawned ,selectSpawner())
 		enemysSpawned += 1
 
 	if(maxNRounds>= round):
 		changingRound.emit(round)
 		round += 1
 		lastEnemysWave = enemysSpawned
-func spawnSlime(enemysSpawned,spawnPos):
+func spawnEnemy(enemysSpawned,spawnPos):
 	if (enemysSpawned<arrayEnemigos.size()):
 		var slime = arrayEnemigos[enemysSpawned]
 		slime.position = spawnPos
-		slime.stats = load("res://resources/red.tres")
+		slime.stats = enemyStats
 		add_child(slime)
 
 

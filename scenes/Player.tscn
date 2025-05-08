@@ -1,7 +1,7 @@
-[gd_scene load_steps=103 format=3 uid="uid://cgeqxpr88y82k"]
+[gd_scene load_steps=104 format=3 uid="uid://cgeqxpr88y82k"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vrn3r"]
-[ext_resource type="Resource" uid="uid://bqd1edpqruhao" path="res://resources/yellow.tres" id="2_5ite7"]
+[ext_resource type="Resource" uid="uid://8feul0e16fk" path="res://resources/red_enemy.tres" id="2_7r3xm"]
 [ext_resource type="Texture2D" uid="uid://btpatvbckdt8t" path="res://Assets/sprites/Player.png" id="2_eaq0y"]
 [ext_resource type="Shader" uid="uid://dby42xd5pjrtu" path="res://Assets/sprites/hitflash.tres" id="2_spt2x"]
 [ext_resource type="Script" path="res://StateMachine/state_machine.gd" id="4_mbaen"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://StateMachine/player_states/player_state_dead.gd" id="7_gpo1w"]
 [ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="8_0bn53"]
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="8_5ipib"]
+[ext_resource type="PackedScene" uid="uid://p5q3inhfkki8" path="res://scenes/playerHud.tscn" id="13_qqd2h"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ue1tx"]
 shader = ExtResource("2_spt2x")
@@ -586,7 +587,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -686,7 +687,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -750,7 +751,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -826,7 +827,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -902,7 +903,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -995,7 +996,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1036,7 +1037,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1089,7 +1090,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1142,7 +1143,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1183,7 +1184,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1224,7 +1225,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1277,7 +1278,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1330,7 +1331,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker2D:rotation")
+tracks/1/path = NodePath("ActionMarker:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -1411,7 +1412,7 @@ _data = {
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_vrn3r")
-stats = ExtResource("2_5ite7")
+stats = ExtResource("2_7r3xm")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ue1tx")
@@ -1423,14 +1424,14 @@ animation = &"left"
 position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_2sw1b")
 
-[node name="Marker2D" type="Marker2D" parent="."]
+[node name="ActionMarker" type="Marker2D" parent="."]
 position = Vector2(0, -9)
 
-[node name="ActionableFinder" type="Area2D" parent="Marker2D"]
+[node name="ActionableFinder" type="Area2D" parent="ActionMarker"]
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Marker2D/ActionableFinder"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActionMarker/ActionableFinder"]
 position = Vector2(10, 0)
 shape = SubResource("CircleShape2D_5jiwp")
 
@@ -1474,7 +1475,9 @@ libraries = {
 "": SubResource("AnimationLibrary_i247y")
 }
 
-[connection signal="onDamageTook" from="HealthComponent" to="." method="_on_health_component_on_damage_took"]
+[node name="HUD" parent="." instance=ExtResource("13_qqd2h")]
+
+[connection signal="onDamageTaken" from="HealthComponent" to="HUD" method="_on_health_component_on_damage_taken"]
 [connection signal="onDead" from="HealthComponent" to="StateMachine/PlayerStateIdle" method="_on_health_component_on_dead"]
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
 

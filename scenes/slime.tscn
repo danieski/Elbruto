@@ -379,6 +379,7 @@ script = ExtResource("1_ormnt")
 anim = NodePath("AnimationPlayer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.19491, 1, 0.959512, 1)
 sprite_frames = SubResource("SpriteFrames_e5i0j")
 animation = &"hit"
 
@@ -395,7 +396,8 @@ libraries = {
 }
 
 [node name="HurtBox" parent="." groups=["enemy"] instance=ExtResource("4_v5uhc")]
-position = Vector2(1, 20)
+position = Vector2(0.455, 4.04)
+scale = Vector2(0.765, 1.37)
 
 [node name="Hit_box" parent="." groups=["enemy"] instance=ExtResource("5_a0m8v")]
 position = Vector2(1, 1)
@@ -405,7 +407,6 @@ position = Vector2(1, 1)
 [node name="Sensor" parent="." instance=ExtResource("8_pl1sb")]
 
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
-[connection signal="onDamageTook" from="HealthComponent" to="MovementNode" method="_on_health_component_on_damage_took"]
 [connection signal="onDead" from="HealthComponent" to="MovementNode" method="_on_health_component_on_dead"]
 [connection signal="player_detected" from="Sensor" to="MovementNode" method="_on_sensor_player_detected"]
 [connection signal="player_lost" from="Sensor" to="MovementNode" method="_on_sensor_player_lost"]
