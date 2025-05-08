@@ -1101,6 +1101,7 @@ zoom = Vector2(3, 3)
 [node name="HUD" parent="Player" instance=ExtResource("3_yky8t")]
 
 [node name="Spawner" parent="." instance=ExtResource("1_4fswl")]
+number_of_enemys = 7
 
 [connection signal="changingRound" from="Spawner" to="Player/HUD" method="_on_spawner_changing_round"]
 

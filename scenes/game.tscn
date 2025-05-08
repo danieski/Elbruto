@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://c8trrvbqut3l4" path="res://Assets/gfx/objects.png" id="2_erti1"]
 [ext_resource type="PackedScene" uid="uid://cdh8p3qpc5fap" path="res://scenes/coin.tscn" id="4_vkgvq"]
 [ext_resource type="PackedScene" uid="uid://p5q3inhfkki8" path="res://scenes/playerHud.tscn" id="5_5m50w"]
-[ext_resource type="Script" path="res://scripts/spawner.gd" id="9_j5yg3"]
+[ext_resource type="PackedScene" uid="uid://duaqpixbcxw7d" path="res://scenes/spawner.tscn" id="6_keefx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5srcl"]
 texture = ExtResource("1_2lvlb")
@@ -2672,7 +2672,6 @@ collision_mask = 0
 script = SubResource("GDScript_3do8b")
 
 [node name="Player" parent="." instance=ExtResource("1_vkvpy")]
-position = Vector2(-536.345, -91.7)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -7)
@@ -2691,20 +2690,12 @@ collision_mask = 2
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MapBorders"]
 polygon = PackedVector2Array(-477, -102, -477, -132, -294, -26, -293, -102, -100, -104, -100, -124, -75, -122, -75, -103, 380, -104, 378, 139, 403, 151, 437, 157, 436, 274, -292, 279, -294, -24, -348, -23, -343, 303, -515, 308, -510, 285, -480, 285, -479, -45, -498, -45, -499, 65, -717, 62, -719, -109, -498, -110, -498, -98, -485, -98, -504, -140, -747, -137, -772, 68, -612, 301, -523, 385, 512, 357, 529, 47, 360, -197, -172, -217, -483, -191, -483, -113)
 
-[node name="Spawner" type="Node" parent="."]
-script = ExtResource("9_j5yg3")
+[node name="Spawner" parent="." instance=ExtResource("6_keefx")]
+number_of_enemys = 7
 
-[node name="roundTimer" type="Timer" parent="Spawner"]
-wait_time = 2.0
-autostart = true
-
-[node name="checkEnemys" type="Timer" parent="Spawner"]
-wait_time = 2.0
-autostart = true
-
-[connection signal="timeout" from="Spawner/roundTimer" to="Spawner" method="_on_timer_timeout"]
-[connection signal="timeout" from="Spawner/checkEnemys" to="Spawner" method="_on_check_enemys_timeout"]
+[connection signal="changingRound" from="Spawner" to="Player/HUD" method="_on_spawner_changing_round"]
 
 [editable path="Player"]
 [editable path="Player/HurtBox"]
 [editable path="Player/HUD"]
+[editable path="Spawner"]

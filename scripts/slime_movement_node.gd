@@ -2,7 +2,7 @@ extends Node
 @onready var slime: CharacterBody2D = $".."
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var animation_tree: AnimationTree = $"../AnimationTree"
-
+signal kill_confirm
 
 func _ready() -> void:
 	animation_player.play("walking")
@@ -34,6 +34,7 @@ func _on_health_component_on_dead() -> void:
 	var slimeMinion = slime.slime_scene.instantiate()
 	slimeMinion.position = slime.position + Vector2(25, 5)
 	slime.get_parent().add_child(slimeMinion)
+	kill_confirm.emit()
 	slime.anim.play("dead")
 
 

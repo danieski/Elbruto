@@ -13,7 +13,5 @@ autostart = true
 wait_time = 2.0
 autostart = true
 
-[connection signal="timeout" from="roundTimer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="checkEnemys" to="." method="_on_check_enemys_timeout"]
 [connection signal="timeout" from="roundTimer2" to="." method="_on_round_timer_2_timeout"]
 [connection signal="timeout" from="checkEnemys2" to="." method="_on_check_enemys_2_timeout"]

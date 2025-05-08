@@ -3,16 +3,18 @@ var slime_scene: PackedScene = preload("res://scenes/slime.tscn")
 var bat_scene: PackedScene = preload("res://scenes/bat_enemy.tscn")
 var round: int = 1
 var arrayEnemigos = []
-@export var number_of_enemys = 5
-@export var nRoundsMax = 3
+@export var number_of_enemys = 0
+@export var nEnemysEachRound = 2
+@export var maxNRounds = 3
+var enemysSpawned =0
+var lastEnemysWave
 signal changingRound
 
 
 func _ready() -> void:
-	var test = slime_scene.instantiate()
-	test.stats = load("res://resources/red.tres")
-	add_child(test)
+	
 	preparePool()
+	print(arrayEnemigos.size())
 	pass
 	
 func preparePool():
@@ -20,24 +22,23 @@ func preparePool():
 		arrayEnemigos.append(slime_scene.instantiate())
 		
 func spawnRound():
-	match round:
-		1:
-			for i in int(number_of_enemys/3):
-				print("Round1")
-				spawnSlime(i ,selectSpawner())
-		2:
-			for i in range(number_of_enemys/3,number_of_enemys/3+number_of_enemys/3):
-				print("Round2")
-				spawnSlime(i, selectSpawner())
-		3:
-			for i in range(number_of_enemys/3-number_of_enemys,number_of_enemys):
-				print("round3")
-				spawnSlime(i, selectSpawner())
-func spawnSlime(numberSpawn,spawnPos):
-	var slime = arrayEnemigos[numberSpawn]
-	slime.position = spawnPos
-	slime.stats = load("res://resources/red.tres")
-	add_child(slime)
+	var nEnemysRound = round * nEnemysEachRound
+	
+	for i in range(nEnemysRound):		
+		spawnSlime(enemysSpawned ,selectSpawner())
+		enemysSpawned += 1
+
+	if(maxNRounds>= round):
+		changingRound.emit(round)
+		round += 1
+		lastEnemysWave = enemysSpawned
+func spawnSlime(enemysSpawned,spawnPos):
+	if (enemysSpawned<arrayEnemigos.size()):
+		var slime = arrayEnemigos[enemysSpawned]
+		slime.position = spawnPos
+		slime.stats = load("res://resources/red.tres")
+		add_child(slime)
+
 
 func selectSpawner():
 	return Vector2(randi_range(-50,50),randi_range(-50,50))
@@ -46,24 +47,17 @@ func selectSpawner():
 
 
 func _on_round_timer_2_timeout() -> void:
-	if nRoundsMax>round:
-			spawnRound()
-			round+=1
-			changingRound.emit(round)
+	spawnRound()
+
 
 
 
 func _on_check_enemys_2_timeout() -> void:
-	
-	var nEnemysAlive = 0
-	
+	var enemysAlive = 0
 	for i in arrayEnemigos:
 		if i != null:
-			return
-		else:
-			nEnemysAlive+=1
-			
-	if nEnemysAlive == arrayEnemigos.size():
-		
+			enemysAlive += 1
+	if enemysAlive == 0:
 		Global.etage += 1
 		get_tree().change_scene_to_file("res://scenes/interior.tscn")
+	
