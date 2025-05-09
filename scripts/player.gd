@@ -16,12 +16,14 @@ const SWORD = preload("res://scenes/sword.tscn")
 var direction: Vector2 = Vector2(0,-1)
 var isReloading = false
 @export var reloadTime = .1
-
+signal playerHurt
+func _ready() -> void:
+	stats.hp = Global.player_current_hp
+	pass
 func hasShoot():
 	isReloading=true
 	await get_tree().create_timer(reloadTime).timeout
 	isReloading=false
-
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Talk"):
@@ -31,5 +33,6 @@ func _physics_process(delta: float) -> void:
 			return
 
 
-func _on_health_component_on_damage_took() -> void:
+
+func on_damage_taken() -> void:
 	hit_flash_anim.play("hit")

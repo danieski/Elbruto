@@ -2341,8 +2341,20 @@ position = Vector2(254, 62)
 polygon = PackedVector2Array(-265, -77, -263, -39, -224, -40, -225, -73)
 
 [node name="Spawner" parent="." instance=ExtResource("3_dcmgn")]
-number_of_enemys = 4
 enemyStats = ExtResource("5_6s000")
+number_of_enemys = 4
+
+[node name="Spawner" parent="Spawner" index="2"]
+position = Vector2(0, 52.175)
+
+[node name="Spawner2" parent="Spawner" index="3"]
+position = Vector2(52.175, 0)
+
+[node name="Spawner3" parent="Spawner" index="4"]
+position = Vector2(-52.175, 0)
+
+[node name="Spawner4" parent="Spawner" index="5"]
+position = Vector2(0, -52.175)
 
 [node name="Barrel" parent="." instance=ExtResource("6_wk32a")]
 position = Vector2(-80, -6)
@@ -2355,9 +2367,5 @@ position = Vector2(-33, 53)
 
 [node name="Barrel4" parent="." instance=ExtResource("6_wk32a")]
 position = Vector2(19, 55)
-
-[node name="Barrel5" parent="." instance=ExtResource("6_wk32a")]
-position = Vector2(68, -8)
-rotation = -1.0415
 
 [editable path="Spawner"]

@@ -1659,3 +1659,4 @@ shape = SubResource("RectangleShape2D_kx45i")
 
 [editable path="Player"]
 [editable path="Player/HurtBox"]
+[editable path="Player/HUD"]

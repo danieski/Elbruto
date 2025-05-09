@@ -2691,8 +2691,20 @@ collision_mask = 2
 polygon = PackedVector2Array(-477, -102, -477, -132, -294, -26, -293, -102, -100, -104, -100, -124, -75, -122, -75, -103, 380, -104, 378, 139, 403, 151, 437, 157, 436, 274, -292, 279, -294, -24, -348, -23, -343, 303, -515, 308, -510, 285, -480, 285, -479, -45, -498, -45, -499, 65, -717, 62, -719, -109, -498, -110, -498, -98, -485, -98, -504, -140, -747, -137, -772, 68, -612, 301, -523, 385, 512, 357, 529, 47, 360, -197, -172, -217, -483, -191, -483, -113)
 
 [node name="Spawner" parent="." instance=ExtResource("6_keefx")]
-number_of_enemys = 7
 enemyStats = ExtResource("6_fnotb")
+number_of_enemys = 7
+
+[node name="Spawner" parent="Spawner" index="2"]
+position = Vector2(52.175, 0)
+
+[node name="Spawner2" parent="Spawner" index="3"]
+position = Vector2(0, 52.175)
+
+[node name="Spawner3" parent="Spawner" index="4"]
+position = Vector2(-52.175, 0)
+
+[node name="Spawner4" parent="Spawner" index="5"]
+position = Vector2(0, -52.175)
 
 [node name="Barrel" parent="." instance=ExtResource("7_q7tev")]
 position = Vector2(-56.7, 0)
@@ -2708,4 +2720,5 @@ stats = ExtResource("8_goaq3")
 
 [editable path="Player"]
 [editable path="Player/HurtBox"]
+[editable path="Player/HUD"]
 [editable path="Spawner"]

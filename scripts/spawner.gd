@@ -1,15 +1,18 @@
 extends Node
-var slime_scene: PackedScene = preload("res://scenes/slime.tscn")
-var bat_scene: PackedScene = preload("res://scenes/bat_enemy.tscn")
-var round: int = 1
-var arrayEnemigos = []
+@export var enemyStats: Resource
 @export var number_of_enemys = 0
 @export var nEnemysEachRound = 2
 @export var maxNRounds = 3
+var slime_scene: PackedScene = preload("res://scenes/slime.tscn")
+var bat_scene: PackedScene = preload("res://scenes/bat_enemy.tscn")
+@onready var spawnPoints: Array[Node2D] = [$Spawner,$Spawner2,$Spawner3,$Spawner4]
 var enemysSpawned =0
 var lastEnemysWave
+var round: int = 1
+var arrayEnemigos = []
 signal changingRound
-@export var enemyStats: Resource
+
+
 
 func _ready() -> void:
 	
@@ -45,9 +48,7 @@ func spawnEnemy(enemysSpawned,spawnPos):
 
 
 func selectSpawner():
-	return Vector2(randi_range(-50,50),randi_range(-50,50))
-	
-
+	return spawnPoints[randi_range(0,3)].position
 
 
 func _on_round_timer_2_timeout() -> void:

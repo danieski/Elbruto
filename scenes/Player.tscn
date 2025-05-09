@@ -1483,8 +1483,11 @@ libraries = {
 
 [node name="HUD" parent="." instance=ExtResource("13_qqd2h")]
 
+[connection signal="onDamageTaken" from="HealthComponent" to="." method="on_damage_taken"]
 [connection signal="onDamageTaken" from="HealthComponent" to="HUD" method="_on_health_component_on_damage_taken"]
 [connection signal="onDead" from="HealthComponent" to="StateMachine/PlayerStateIdle" method="_on_health_component_on_dead"]
+[connection signal="onDead" from="HealthComponent" to="HUD" method="_on_health_component_on_dead"]
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
 
 [editable path="HurtBox"]
+[editable path="HUD"]
