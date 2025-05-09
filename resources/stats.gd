@@ -5,7 +5,7 @@ extends Resource
 @export var color: COLORS
 
 enum COLORS{
-	RED,
-	YELLOW,
-	GREEN
+	GREEN,
+	BLUE,
+	RED
 }

@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://ot4et6702iw3"]
+[gd_scene load_steps=2 format=3 uid="uid://ot4et6702iw3"]
 
 [ext_resource type="Script" path="res://scripts/hurt_box.gd" id="1_wahkq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tflt3"]
-size = Vector2(17, 11)
 
 [node name="HurtBox" type="Area2D"]
 collision_layer = 32
@@ -11,6 +8,5 @@ collision_mask = 64
 script = ExtResource("1_wahkq")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_tflt3")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

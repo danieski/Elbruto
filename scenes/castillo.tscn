@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=4 uid="uid://bo6lixusjp0i7"]
+[gd_scene load_steps=13 format=4 uid="uid://bo6lixusjp0i7"]
 
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_5waph"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="2_2q7ir"]
 [ext_resource type="PackedScene" uid="uid://p5q3inhfkki8" path="res://scenes/playerHud.tscn" id="3_3tdf7"]
 [ext_resource type="PackedScene" uid="uid://duaqpixbcxw7d" path="res://scenes/spawner.tscn" id="3_dcmgn"]
-[ext_resource type="Resource" uid="uid://8feul0e16fk" path="res://resources/red_enemy.tres" id="4_u3gnl"]
+[ext_resource type="Resource" uid="uid://vy5hy6uhmwmm" path="res://resources/red.tres" id="5_6s000"]
+[ext_resource type="PackedScene" uid="uid://ho6na3x8pwfr" path="res://resources/barrel.tscn" id="6_wk32a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p4c1q"]
 texture = ExtResource("1_5waph")
@@ -2341,6 +2342,22 @@ polygon = PackedVector2Array(-265, -77, -263, -39, -224, -40, -225, -73)
 
 [node name="Spawner" parent="." instance=ExtResource("3_dcmgn")]
 number_of_enemys = 4
-enemyStats = ExtResource("4_u3gnl")
+enemyStats = ExtResource("5_6s000")
+
+[node name="Barrel" parent="." instance=ExtResource("6_wk32a")]
+position = Vector2(-80, -6)
+
+[node name="Barrel2" parent="." instance=ExtResource("6_wk32a")]
+position = Vector2(-60, 24)
+
+[node name="Barrel3" parent="." instance=ExtResource("6_wk32a")]
+position = Vector2(-33, 53)
+
+[node name="Barrel4" parent="." instance=ExtResource("6_wk32a")]
+position = Vector2(19, 55)
+
+[node name="Barrel5" parent="." instance=ExtResource("6_wk32a")]
+position = Vector2(68, -8)
+rotation = -1.0415
 
 [editable path="Spawner"]

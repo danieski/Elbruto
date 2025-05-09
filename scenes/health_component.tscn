@@ -1,13 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b0frrqjfje0wb"]
+[gd_scene load_steps=2 format=3 uid="uid://b0frrqjfje0wb"]
 
 [ext_resource type="Script" path="res://scripts/health_component.gd" id="1_21gme"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_dhp5j"]
 
 [node name="HealthComponent" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource("1_21gme")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_dhp5j")

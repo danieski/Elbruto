@@ -1,8 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://sxwq0jcuoynw"]
+[gd_scene load_steps=16 format=3 uid="uid://sxwq0jcuoynw"]
 
 [ext_resource type="Texture2D" uid="uid://cewqw5qns81yb" path="res://Assets/sprites/pixel_art_sword_slash_sprites.png" id="1_f0mjf"]
 [ext_resource type="Script" path="res://scripts/sword.gd" id="1_loisy"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="2_5dc4s"]
+[ext_resource type="Resource" uid="uid://vy5hy6uhmwmm" path="res://resources/red.tres" id="2_atunv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0jpf"]
+size = Vector2(20, 12.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2d8ex"]
 atlas = ExtResource("1_f0mjf")
@@ -78,6 +82,7 @@ animations = [{
 [node name="Sword" type="Node2D"]
 scale = Vector2(0.4, 0.4)
 script = ExtResource("1_loisy")
+stats = ExtResource("2_atunv")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -11.67)
@@ -86,8 +91,14 @@ position = Vector2(0, -11.67)
 position = Vector2(50, -5)
 scale = Vector2(3, 3)
 
+[node name="CollisionShape2D2" parent="Marker2D/HurtBox" index="0"]
+position = Vector2(0, 0.140001)
+shape = SubResource("RectangleShape2D_k0jpf")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Marker2D"]
 position = Vector2(50, 0)
 sprite_frames = SubResource("SpriteFrames_17q2y")
 autoplay = "default"
-frame_progress = 0.766646
+frame_progress = 0.263554
+
+[editable path="Marker2D/HurtBox"]

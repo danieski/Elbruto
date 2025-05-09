@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://3hexds7kxl76"]
+[gd_scene load_steps=9 format=4 uid="uid://3hexds7kxl76"]
 
 [ext_resource type="PackedScene" uid="uid://duaqpixbcxw7d" path="res://scenes/spawner.tscn" id="1_4fswl"]
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_gqfdu"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="2_2ohj3"]
-[ext_resource type="Resource" uid="uid://bm3ynixyvxggl" path="res://resources/yellow_enemy.tres" id="5_cx555"]
+[ext_resource type="Script" path="res://resources/stats.gd" id="4_lcilb"]
+[ext_resource type="PackedScene" uid="uid://ho6na3x8pwfr" path="res://resources/barrel.tscn" id="5_parsd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fwsfd"]
 texture = ExtResource("1_gqfdu")
@@ -1084,6 +1085,12 @@ texture = ExtResource("1_gqfdu")
 [sub_resource type="TileSet" id="TileSet_8uwon"]
 sources/0 = SubResource("TileSetAtlasSource_fwsfd")
 
+[sub_resource type="Resource" id="Resource_7cyif"]
+script = ExtResource("4_lcilb")
+damage = 2
+hp = 2
+color = 1
+
 [node name="water" type="Node2D"]
 
 [node name="floor" type="TileMapLayer" parent="."]
@@ -1100,6 +1107,15 @@ zoom = Vector2(3, 3)
 
 [node name="Spawner" parent="." instance=ExtResource("1_4fswl")]
 number_of_enemys = 7
-enemyStats = ExtResource("5_cx555")
+enemyStats = SubResource("Resource_7cyif")
+
+[node name="Barrel" parent="." instance=ExtResource("5_parsd")]
+
+[node name="Barrel2" parent="." instance=ExtResource("5_parsd")]
+position = Vector2(-23, -1)
+
+[node name="Barrel3" parent="." instance=ExtResource("5_parsd")]
+position = Vector2(30, -9)
+rotation = -0.000241211
 
 [editable path="Spawner"]

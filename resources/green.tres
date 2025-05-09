@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterStats" load_steps=2 format=3 uid="uid://bgq6qnkixsuq"]
+
+[ext_resource type="Script" path="res://resources/stats.gd" id="1_4ncxr"]
+
+[resource]
+script = ExtResource("1_4ncxr")
+damage = 3
+hp = 1
+color = 0

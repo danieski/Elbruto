@@ -1,14 +1,14 @@
 extends Area2D
+var base_y := 0.0
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _ready():
+	base_y = position.y  
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	position.y = base_y + sin(Time.get_ticks_msec() / 1000.0 * 2.0)
 
 
 func _on_area_entered(area: Area2D) -> void:

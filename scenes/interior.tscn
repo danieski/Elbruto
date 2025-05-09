@@ -1656,3 +1656,6 @@ dialogue_resource = ExtResource("5_b5218")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="doorAction"]
 position = Vector2(1, 6.5)
 shape = SubResource("RectangleShape2D_kx45i")
+
+[editable path="Player"]
+[editable path="Player/HurtBox"]

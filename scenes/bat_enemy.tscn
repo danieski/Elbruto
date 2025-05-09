@@ -1,10 +1,12 @@
-[gd_scene load_steps=42 format=3 uid="uid://qyjtd2ihs6p6"]
+[gd_scene load_steps=47 format=3 uid="uid://qyjtd2ihs6p6"]
 
 [ext_resource type="PackedScene" uid="uid://cgh462ipfngmi" path="res://scenes/npc.tscn" id="1_1av6q"]
 [ext_resource type="Script" path="res://scripts/follower_npc.gd" id="1_q2nxc"]
-[ext_resource type="Resource" uid="uid://7ca27xd7g40d" path="res://resources/red.tres" id="2_rp5wx"]
+[ext_resource type="Texture2D" uid="uid://qele6pqufk74" path="res://Assets/Gizmo/blue-triangle-1.png" id="2_jvo3r"]
 [ext_resource type="Texture2D" uid="uid://bpauc51v0qnag" path="res://Assets/sprites/knight.png" id="3_07ijw"]
+[ext_resource type="Texture2D" uid="uid://dmu7oo7snam1q" path="res://Assets/Gizmo/Green_triangle.svg.png" id="3_pen8i"]
 [ext_resource type="Texture2D" uid="uid://gj84krdhayoo" path="res://Assets/sprites/sparks.png" id="4_5cv3o"]
+[ext_resource type="Texture2D" uid="uid://cvwsiaftl86kj" path="res://Assets/Gizmo/Red_Triangle.png" id="4_h8674"]
 [ext_resource type="Shader" uid="uid://dby42xd5pjrtu" path="res://Assets/sprites/hitflash.tres" id="4_p2rl3"]
 [ext_resource type="Texture2D" uid="uid://bkx53uuv256rn" path="res://Assets/sprites/piskel_bat.png" id="5_iu1tm"]
 [ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="7_0s3b6"]
@@ -12,7 +14,27 @@
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="11_b16a5"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="12_ubm41"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_25j6d"]
+[sub_resource type="Resource" id="Resource_2yysf"]
+metadata/__load_path__ = "res://resources/red.tres"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_afp2p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pen8i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_jvo3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h8674")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwxu8"]
 resource_local_to_scene = true
 shader = ExtResource("4_p2rl3")
 shader_parameter/enabled = false
@@ -242,6 +264,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtBox/CollisionShape2D2:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_75r1s"]
 resource_name = "damaged"
@@ -311,6 +345,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtBox/CollisionShape2D2:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3pvsm"]
@@ -431,13 +477,22 @@ _data = {
 "running_right": SubResource("Animation_tdgmd")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_2w702"]
+radius = 9.61488
+
 [node name="BatEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 65
 script = ExtResource("1_q2nxc")
-stats = ExtResource("2_rp5wx")
+stats = SubResource("Resource_2yysf")
+
+[node name="Gizmo" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.913725)
+position = Vector2(0.41, -11.585)
+scale = Vector2(0.026, 0.024)
+sprite_frames = SubResource("SpriteFrames_afp2p")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
-material = SubResource("ShaderMaterial_25j6d")
+material = SubResource("ShaderMaterial_vwxu8")
 position = Vector2(0.999999, 1)
 scale = Vector2(1, 0.9375)
 sprite_frames = SubResource("SpriteFrames_h4x55")
@@ -465,6 +520,12 @@ libraries = {
 position = Vector2(-0.065, -1.53)
 scale = Vector2(0.945, 0.81)
 
+[node name="CollisionShape2D2" parent="HurtBox" index="0"]
+shape = SubResource("CircleShape2D_2w702")
+
+[connection signal="onDamageTaken" from="HealthComponent" to="." method="_on_health_component_on_damage_taken"]
 [connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
 [connection signal="player_detected" from="Sensor" to="." method="_on_sensor_player_detected"]
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
+
+[editable path="HurtBox"]

@@ -5,14 +5,22 @@ const SPEED = 10
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @export var followAt: CharacterBody2D
 @export var stats: CharacterStats
+@onready var gizmo: AnimatedSprite2D = $Gizmo
+@onready var hit_flash: AnimationPlayer = $HitFlash
+
 var slime_scene: PackedScene = preload("res://scenes/miniSlime.tscn")
 func _ready() -> void:
-	print(stats.color)
+	selectColor()
+func selectColor():
+
 	match stats.color:
+		0:
+			gizmo.frame=0
 		1:
-			animated_sprite_2d.modulate = Color(0,0,1)
+			gizmo.frame=1
 		2:
-			animated_sprite_2d.modulate = Color(0,1,1,1)
-		3:
-			animated_sprite_2d.modulate = Color(0,1,0)
-	pass
+			gizmo.frame=2
+
+
+func _on_health_component_on_damage_taken() -> void:
+	animated_sprite_2d.play("hit")

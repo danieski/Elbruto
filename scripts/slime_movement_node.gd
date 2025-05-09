@@ -45,3 +45,7 @@ func _on_sensor_player_detected(body: Node) -> void:
 
 func _on_sensor_player_lost() -> void:
 	slime.followAt = null
+
+
+func _on_health_component_on_damage_taken() -> void:
+	pass # Replace with function body.

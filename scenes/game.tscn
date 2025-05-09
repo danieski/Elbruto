@@ -1,11 +1,13 @@
-[gd_scene load_steps=15 format=4 uid="uid://ciy1qmtn641cs"]
+[gd_scene load_steps=17 format=4 uid="uid://ciy1qmtn641cs"]
 
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_2lvlb"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="1_vkvpy"]
 [ext_resource type="Texture2D" uid="uid://c8trrvbqut3l4" path="res://Assets/gfx/objects.png" id="2_erti1"]
 [ext_resource type="PackedScene" uid="uid://cdh8p3qpc5fap" path="res://scenes/coin.tscn" id="4_vkgvq"]
+[ext_resource type="Resource" uid="uid://bgq6qnkixsuq" path="res://resources/green.tres" id="6_fnotb"]
 [ext_resource type="PackedScene" uid="uid://duaqpixbcxw7d" path="res://scenes/spawner.tscn" id="6_keefx"]
-[ext_resource type="Resource" uid="uid://d1jhvfkl7x74w" path="res://resources/green_enemy.tres" id="7_6v1cd"]
+[ext_resource type="PackedScene" uid="uid://ho6na3x8pwfr" path="res://resources/barrel.tscn" id="7_q7tev"]
+[ext_resource type="Resource" uid="uid://vy5hy6uhmwmm" path="res://resources/red.tres" id="8_goaq3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5srcl"]
 texture = ExtResource("1_2lvlb")
@@ -2690,7 +2692,19 @@ polygon = PackedVector2Array(-477, -102, -477, -132, -294, -26, -293, -102, -100
 
 [node name="Spawner" parent="." instance=ExtResource("6_keefx")]
 number_of_enemys = 7
-enemyStats = ExtResource("7_6v1cd")
+enemyStats = ExtResource("6_fnotb")
+
+[node name="Barrel" parent="." instance=ExtResource("7_q7tev")]
+position = Vector2(-56.7, 0)
+stats = ExtResource("8_goaq3")
+
+[node name="Barrel2" parent="." instance=ExtResource("7_q7tev")]
+position = Vector2(-133, 101)
+stats = ExtResource("8_goaq3")
+
+[node name="Barrel3" parent="." instance=ExtResource("7_q7tev")]
+position = Vector2(110, 41)
+stats = ExtResource("8_goaq3")
 
 [editable path="Player"]
 [editable path="Player/HurtBox"]
