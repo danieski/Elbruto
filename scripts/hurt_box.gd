@@ -9,4 +9,4 @@ func _ready() -> void:
 func hit(area):
 	#Gotta check that you are in different group 
 	if area is HitBox and !area.is_in_group(self.get_groups()[0]) 	:
-		area.take_damage(damage)
+		area.take_damage(get_parent().stats.damage)

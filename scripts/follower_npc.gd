@@ -29,7 +29,6 @@ func _physics_process(delta: float) -> void:
 		animation_player.play("death")
 	pass
 func selectColor():
-	print("Stats color", stats.color)
 	match stats.color:
 		0:
 			gizmo.frame=0

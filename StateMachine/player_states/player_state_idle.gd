@@ -24,3 +24,7 @@ func on_input(event):
 
 func _on_health_component_on_dead() -> void:
 	state_machine.change_to("PlayerStateDead")
+
+
+func _on_player_idle_to_talking() -> void:
+	state_machine.change_to("PlayerStateTalking")

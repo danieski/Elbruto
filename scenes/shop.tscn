@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://clkn333emqg4p"]
+
+[ext_resource type="Script" path="res://scripts/shop_logic.gd" id="1_m4cn1"]
+[ext_resource type="Texture2D" uid="uid://dny30ucgg30e5" path="res://Assets/sprites/heart pixel art 64x64.png" id="2_bl4o2"]
+[ext_resource type="Texture2D" uid="uid://bxnglljvyjmnv" path="res://Assets/sprites/emptyheart.png" id="3_noi0k"]
+[ext_resource type="Texture2D" uid="uid://c7hchietel3pn" path="res://Assets/sprites/dollar.png" id="4_g467q"]
+
+[sub_resource type="Theme" id="Theme_ua38d"]
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m4cn1")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -250.0
+offset_right = 200.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Panel"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 22.0
+grow_horizontal = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 6
+text = "SHOP"
+horizontal_alignment = 1
+
+[node name="Exit" type="Button" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "X"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ua38d")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+texture = ExtResource("2_bl4o2")
+
+[node name="+1HP" type="Button" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+ 1HP"
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "1$"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ua38d")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("3_noi0k")
+
+[node name="+1MP" type="Button" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "+ 1MP"
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "1$"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CanvasLayer/Panel/VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_ua38d")
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer4"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+texture = ExtResource("4_g467q")
+expand_mode = 2
+
+[node name="Money" type="Label" parent="CanvasLayer/Panel/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0
+"
+
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer3/Exit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer/+1HP" to="." method="hpUp"]
+[connection signal="pressed" from="CanvasLayer/Panel/VBoxContainer/HBoxContainer2/+1MP" to="." method="mpUp"]

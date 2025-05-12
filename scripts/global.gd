@@ -1,11 +1,19 @@
 extends Node
-var has_apple = false
 var etage = 1
-var player_max_hp = 3
-var player_current_hp = 3
-func updateHp():
-	print("global informed")
-	player_current_hp -= 1
+var money = 50
+var round = 1
+var player_stats = preload("res://resources/player_stats_resource.tres")
+signal change_round(nRound)
+signal updateHUD()
+func on_player_damage(damage):
+	player_stats.hp = player_stats.hp-damage
+	pass
+func on_player_heal(heal):
+	player_stats.hp = player_stats.hp+heal
+	pass
+func on_player_mpUp(mp):
+	player_stats.mp = player_stats.mp+mp
+	pass
 func getOutside():
 	
 	match etage:

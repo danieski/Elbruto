@@ -1,7 +1,7 @@
 [gd_scene load_steps=39 format=3 uid="uid://ho6na3x8pwfr"]
 
 [ext_resource type="Shader" uid="uid://dby42xd5pjrtu" path="res://Assets/sprites/hitflash.tres" id="1_8rnnh"]
-[ext_resource type="Script" path="res://Assets/sprites/barrel.gd" id="1_cobf3"]
+[ext_resource type="Script" path="res://scripts/barrel.gd" id="1_cobf3"]
 [ext_resource type="Texture2D" uid="uid://s83ipcvwv20l" path="res://Assets/sprites/sheet_barrel01Hit.png" id="2_k5jnu"]
 [ext_resource type="Resource" uid="uid://bgq6qnkixsuq" path="res://resources/green.tres" id="2_ktri8"]
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="3_pxijg"]

@@ -9,30 +9,60 @@ const JUMP_VELOCITY = -300.0
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var marker_2d: Marker2D = $ActionMarker
 @onready var hud: CanvasLayer = $HUD
-@export var stats: CharacterStats
+@export var stats: PlayerStats
 @onready var hit_flash_anim: AnimationPlayer = $HitFlashAnim
-@onready var sword: Node2D = $Sword
-const SWORD = preload("res://scenes/sword.tscn")
+@onready var thinking: Sprite2D = $Thinking
+
+const SPELL = preload("res://scenes/spell.tscn")
+
+
+#var test : PackedScene = preload("res://resources/ice_spell.tres")
+@export var spellArray: Array[SpellStats]
+var selectionSpellCounter = 0
 var direction: Vector2 = Vector2(0,-1)
 var isReloading = false
-@export var reloadTime = .1
 signal playerHurt
+signal idle_to_talking
 func _ready() -> void:
-	stats.hp = Global.player_current_hp
-	pass
+
+	Global.updateHUD.emit()
+	
 func hasShoot():
 	isReloading=true
-	await get_tree().create_timer(reloadTime).timeout
+	%SkillCD.wait_time=spellArray[selectionSpellCounter].cooldown
+	%SkillCD.start()
+	await %SkillCD.timeout
 	isReloading=false
-
+	
+	pass
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("Talk"):
 		var actionables = actionable_finder.get_overlapping_areas()
 		if actionables.size() > 0:
 			actionables[0].action()
+			idle_to_talking.emit()
 			return
+			
+	if Input.is_action_just_pressed("changeSpell"):
+		selectionSpellCounter += 1
+		if selectionSpellCounter>spellArray.size()-1:
+			selectionSpellCounter = 0
+		Global.updateHUD.emit()
+		
+	if Input.is_action_just_pressed("shoot"):
+		if stats.mp >= 1:
+			if !isReloading:
+				stats.mp -= 1
+				hasShoot()
+				var spell = SPELL.instantiate()
+				spell.position = position
+				spell.stats = spellArray[selectionSpellCounter]
+				get_parent().add_child(spell)
+				Global.updateHUD.emit()
 
-
-
-func on_damage_taken() -> void:
+	
+func on_damage_taken(value) -> void:
 	hit_flash_anim.play("hit")
+	stats.hp = stats.hp + value
+	Global.updateHUD.emit()
+	

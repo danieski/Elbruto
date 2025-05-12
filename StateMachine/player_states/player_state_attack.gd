@@ -4,10 +4,17 @@ func on_physics_process(delta: float) -> void:
 
 	
 func on_input(event):
-	controlled_node.hasShoot()
-	var sword = controlled_node.SWORD.instantiate()
-	sword.position=controlled_node.position
-	controlled_node.get_parent().add_child(sword)
+
+	match controlled_node.direction:
+		Vector2(1,0):
+			controlled_node.animation_player.play("attack_right")
+		Vector2(-1,0):
+			controlled_node.animation_player.play("attack_left")
+		Vector2(0,1):
+			controlled_node.animation_player.play("attack_up")
+		Vector2(0,-1):
+			controlled_node.animation_player.play("attack_down")
+	await controlled_node.animation_player.animation_finished
 	state_machine.change_to("PlayerStateRunning")
 
 func attackToIdle():

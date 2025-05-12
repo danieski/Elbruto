@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=4 uid="uid://by1emc1h75sjm"]
+[gd_scene load_steps=14 format=4 uid="uid://by1emc1h75sjm"]
 
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_dxgu6"]
 [ext_resource type="Texture2D" uid="uid://cx4thjdgcni1x" path="res://Assets/gfx/Inner.png" id="2_67u11"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="3_f7lh3"]
 [ext_resource type="Script" path="res://scripts/doorActionable.gd" id="4_a2rf6"]
 [ext_resource type="Resource" uid="uid://cuoqif6pd0nd1" path="res://dialog/doorDialog.dialogue" id="5_b5218"]
+[ext_resource type="Script" path="res://scripts/shop.gd" id="6_1ka86"]
+[ext_resource type="PackedScene" uid="uid://clkn333emqg4p" path="res://scenes/shop.tscn" id="7_r6jsm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgdsa"]
 texture = ExtResource("1_dxgu6")
@@ -1622,7 +1624,7 @@ texture = ExtResource("2_67u11")
 sources/0 = SubResource("TileSetAtlasSource_51qix")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kx45i"]
-size = Vector2(28, 15)
+size = Vector2(16, 15)
 
 [node name="Interior" type="Node2D"]
 
@@ -1635,7 +1637,7 @@ tile_map_data = PackedByteArray("AAADAAMAAAABAAgAAAADAAIAAAABAAgAAAACAAIAAAABAAg
 tile_set = SubResource("TileSet_e5dfm")
 
 [node name="Player" parent="." instance=ExtResource("3_f7lh3")]
-position = Vector2(19, 22)
+position = Vector2(87, 22)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(3, 3)
@@ -1657,6 +1659,20 @@ dialogue_resource = ExtResource("5_b5218")
 position = Vector2(1, 6.5)
 shape = SubResource("RectangleShape2D_kx45i")
 
+[node name="shop" type="Area2D" parent="."]
+position = Vector2(21, 62)
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("6_1ka86")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="shop"]
+position = Vector2(66, 25)
+shape = SubResource("RectangleShape2D_kx45i")
+
+[node name="Shop" parent="shop/CollisionShape2D" instance=ExtResource("7_r6jsm")]
+unique_name_in_owner = true
+
 [editable path="Player"]
 [editable path="Player/HurtBox"]
+[editable path="Player/Hit_box"]
 [editable path="Player/HUD"]

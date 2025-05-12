@@ -1,24 +1,29 @@
-[gd_scene load_steps=105 format=3 uid="uid://cgeqxpr88y82k"]
+[gd_scene load_steps=127 format=3 uid="uid://cgeqxpr88y82k"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vrn3r"]
+[ext_resource type="Resource" uid="uid://cy3dx752sk83a" path="res://resources/player_stats_resource.tres" id="2_5e85p"]
 [ext_resource type="Texture2D" uid="uid://btpatvbckdt8t" path="res://Assets/sprites/Player.png" id="2_eaq0y"]
-[ext_resource type="Script" path="res://resources/stats.gd" id="2_hcr84"]
 [ext_resource type="Shader" uid="uid://dby42xd5pjrtu" path="res://Assets/sprites/hitflash.tres" id="2_spt2x"]
+[ext_resource type="Script" path="res://resources/spellStats.gd" id="3_k6q75"]
 [ext_resource type="Script" path="res://StateMachine/state_machine.gd" id="4_mbaen"]
+[ext_resource type="Resource" uid="uid://b616pbd20r0bi" path="res://resources/spell_fire_resource.tres" id="4_ydqrk"]
 [ext_resource type="Script" path="res://StateMachine/player_states/player_state_idle.gd" id="5_2quk8"]
 [ext_resource type="Script" path="res://StateMachine/player_states/player_state_attack.gd" id="5_4qmgw"]
+[ext_resource type="Resource" uid="uid://ba1xb1nnxnkta" path="res://resources/spell_ice_resource.tres" id="5_84hj1"]
 [ext_resource type="Script" path="res://StateMachine/player_states/player_state_running.gd" id="6_e8mih"]
+[ext_resource type="Resource" uid="uid://dv8vdtu8rw3od" path="res://resources/spell_wind_resource.tres" id="6_ethc2"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="7_032fx"]
+[ext_resource type="Resource" uid="uid://3wrovxm032nm" path="res://resources/spell_earth_resource.tres" id="7_dqdde"]
 [ext_resource type="Script" path="res://StateMachine/player_states/player_state_dead.gd" id="7_gpo1w"]
 [ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="8_0bn53"]
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="8_5ipib"]
-[ext_resource type="PackedScene" uid="uid://p5q3inhfkki8" path="res://scenes/playerHud.tscn" id="13_qqd2h"]
-
-[sub_resource type="Resource" id="Resource_ivp4c"]
-script = ExtResource("2_hcr84")
-damage = 40
-hp = 3
-color = 0
+[ext_resource type="Script" path="res://StateMachine/player_states/player_state_talking.gd" id="10_f7b5r"]
+[ext_resource type="Script" path="res://scripts/canvas_layer.gd" id="13_qabd2"]
+[ext_resource type="StyleBox" uid="uid://c8fq84pupm25w" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/HUD_Panen_Style.tres" id="14_odird"]
+[ext_resource type="StyleBox" uid="uid://dvtav16gx0cbc" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/default_panel_foreground.tres" id="15_m0hfm"]
+[ext_resource type="Texture2D" uid="uid://dc8auypeii5r2" path="res://Assets/thought-icon-9.png" id="20_4eh60"]
+[ext_resource type="Texture2D" uid="uid://dk8xx2rc8c7is" path="res://Assets/sprites/fireballicon.png" id="20_6u8r3"]
+[ext_resource type="Texture2D" uid="uid://c6h0i3p2lsy2n" path="res://Assets/sprites/fireballiconcd.png" id="21_bii2c"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ue1tx"]
 shader = ExtResource("2_spt2x")
@@ -312,7 +317,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_63nsu")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_down",
 "speed": 5.0
 }, {
@@ -641,38 +646,50 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("HurtBox/CollisionShape2D2:position")
+tracks/5/path = NodePath("AnimatedSprite:material")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 5)]
+"update": 1,
+"values": [SubResource("ShaderMaterial_ue1tx")]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("AnimatedSprite:material")
+tracks/6/path = NodePath("AnimatedSprite:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("ShaderMaterial_ue1tx")]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("AnimatedSprite:modulate")
+tracks/7/path = NodePath("HurtBox/CollisionShape2D2:shape:size")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Vector2(7, 17)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HurtBox/CollisionShape2D2:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, -9)]
 }
 
 [sub_resource type="Animation" id="Animation_auhaj"]
@@ -736,7 +753,19 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 5)]
+"values": [Vector2(-6.99382e-07, 4)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HurtBox/CollisionShape2D2:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 8)]
 }
 
 [sub_resource type="Animation" id="Animation_hsbf7"]
@@ -793,26 +822,38 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HurtBox/CollisionShape2D2:position")
+tracks/4/path = NodePath("HurtBox/CollisionShape2D2:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-14, -8)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("HurtBox/CollisionShape2D2:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HurtBox/CollisionShape2D2:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(8, 20)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HurtBox/CollisionShape2D2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, -9)]
 }
 
 [sub_resource type="Animation" id="Animation_bo6f0"]
@@ -869,26 +910,38 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HurtBox/CollisionShape2D2:position")
+tracks/4/path = NodePath("HurtBox/CollisionShape2D2:disabled")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(14, -8)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("HurtBox/CollisionShape2D2:disabled")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0, 0.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HurtBox/CollisionShape2D2:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(7, 17)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HurtBox/CollisionShape2D2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(17, -9)]
 }
 
 [sub_resource type="Animation" id="Animation_ml7fq"]
@@ -945,14 +998,26 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("HurtBox/CollisionShape2D2:position")
+tracks/4/path = NodePath("HurtBox/CollisionShape2D2:shape:size")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, -21)]
+"values": [Vector2(20, 8)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HurtBox/CollisionShape2D2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3.32803e-06, -19.375)]
 }
 
 [sub_resource type="Animation" id="Animation_k7hpi"]
@@ -1377,6 +1442,9 @@ _data = {
 "walk_up": SubResource("Animation_0kjok")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox462"]
+size = Vector2(7, 17)
+
 [sub_resource type="Animation" id="Animation_3t7as"]
 length = 0.001
 tracks/0/type = "value"
@@ -1414,11 +1482,105 @@ _data = {
 "hit": SubResource("Animation_bw3kb")
 }
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11014"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgsjf"]
+bg_color = Color(1, 0.152941, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nrbg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mkyv"]
+bg_color = Color(0, 0, 0.92549, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdsn8"]
+atlas = ExtResource("2_eaq0y")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqui"]
+atlas = ExtResource("2_eaq0y")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yqmm"]
+atlas = ExtResource("2_eaq0y")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoa4j"]
+atlas = ExtResource("2_eaq0y")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tuh4"]
+atlas = ExtResource("2_eaq0y")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o028i"]
+atlas = ExtResource("2_eaq0y")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfkjd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdsn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yqmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoa4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tuh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o028i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_vrn3r")
-stats = SubResource("Resource_ivp4c")
+stats = ExtResource("2_5e85p")
+spellArray = Array[ExtResource("3_k6q75")]([ExtResource("4_ydqrk"), ExtResource("5_84hj1"), ExtResource("6_ethc2"), ExtResource("7_dqdde")])
+
+[node name="SkillCD" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_ue1tx")
@@ -1464,12 +1626,16 @@ script = ExtResource("6_e8mih")
 [node name="PlayerStateDead" type="Node" parent="StateMachine"]
 script = ExtResource("7_gpo1w")
 
+[node name="PlayerStateTalking" type="Node" parent="StateMachine"]
+script = ExtResource("10_f7b5r")
+
 [node name="HealthComponent" parent="." instance=ExtResource("8_0bn53")]
 
 [node name="HurtBox" parent="." groups=["player"] instance=ExtResource("7_032fx")]
 
 [node name="CollisionShape2D2" parent="HurtBox" index="0"]
-position = Vector2(0, 5)
+position = Vector2(17, -9)
+shape = SubResource("RectangleShape2D_ox462")
 disabled = true
 
 [node name="Hit_box" parent="." groups=["player"] instance=ExtResource("8_5ipib")]
@@ -1481,8 +1647,163 @@ libraries = {
 "": SubResource("AnimationLibrary_i247y")
 }
 
-[node name="HUD" parent="." instance=ExtResource("13_qqd2h")]
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("13_qabd2")
 
+[node name="Panel" type="Panel" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -272.0
+offset_right = 262.0
+offset_bottom = 62.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("14_odird")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="hp" type="ProgressBar" parent="HUD/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_11014")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vgsjf")
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("15_m0hfm")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="round" type="Label" parent="HUD/Panel/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Round: "
+
+[node name="nRound" type="Label" parent="HUD/Panel/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "1
+"
+
+[node name="mana" type="ProgressBar" parent="HUD/Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_3nrbg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5mkyv")
+value = 22.07
+
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/Panel/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="HUD"]
+offset_right = 164.0
+offset_bottom = 198.0
+theme_override_styles/panel = ExtResource("14_odird")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="HUD/Panel2"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 91.0
+offset_right = 72.0
+offset_bottom = 195.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Panel2/HBoxContainer5"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HUD/Panel2/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/Panel2/HBoxContainer5/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "DMG: "
+
+[node name="dmg" type="Label" parent="HUD/Panel2/HBoxContainer5/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "0
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel2/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/Panel2/HBoxContainer5/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "HP: "
+
+[node name="hp" type="Label" parent="HUD/Panel2/HBoxContainer5/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Panel2/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/Panel2/HBoxContainer5/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "MP: "
+
+[node name="mp" type="Label" parent="HUD/Panel2/HBoxContainer5/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0
+"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HUD/Panel2/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HUD/Panel2/HBoxContainer5/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "AS:"
+
+[node name="atackspeed" type="Label" parent="HUD/Panel2/HBoxContainer5/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "0
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel2/HBoxContainer5"]
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/Panel2/HBoxContainer5/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 80.0
+step = 0.1
+value = 40.0
+fill_mode = 4
+texture_under = ExtResource("20_6u8r3")
+texture_progress = ExtResource("21_bii2c")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="HUD/Panel2"]
+position = Vector2(53, 57.5)
+scale = Vector2(3, 3.28125)
+sprite_frames = SubResource("SpriteFrames_vfkjd")
+autoplay = "default"
+frame_progress = 0.330968
+
+[node name="Thinking" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(15.8437, -29.9687)
+scale = Vector2(0.0365234, 0.0373047)
+texture = ExtResource("20_4eh60")
+
+[connection signal="idle_to_talking" from="." to="StateMachine/PlayerStateIdle" method="_on_player_idle_to_talking"]
 [connection signal="onDamageTaken" from="HealthComponent" to="." method="on_damage_taken"]
 [connection signal="onDamageTaken" from="HealthComponent" to="HUD" method="_on_health_component_on_damage_taken"]
 [connection signal="onDead" from="HealthComponent" to="StateMachine/PlayerStateIdle" method="_on_health_component_on_dead"]
@@ -1490,4 +1811,4 @@ libraries = {
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
 
 [editable path="HurtBox"]
-[editable path="HUD"]
+[editable path="Hit_box"]

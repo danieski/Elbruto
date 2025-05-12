@@ -24,5 +24,4 @@ func _on_hit_box_on_health_changed(value) -> void:
 	if current_health <= 0:
 		onDead.emit()
 	elif current_health >= 0 and current_health < old_health:
-		print("ondamagetook")
-		onDamageTaken.emit()
+		onDamageTaken.emit(value)

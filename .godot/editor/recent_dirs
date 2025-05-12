@@ -1,7 +1,8 @@
-res://Assets/gfx
-res://Assets/sprites
 res://resources
 res://scenes
+res://Assets/sprites
+res://addons/dialogue_quest/resources/themes/default/components/stylebox
 res://scripts
+res://Assets/gfx
 res://
 res://StateMachine/

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://cy3dx752sk83a"]
+
+[ext_resource type="Script" path="res://resources/player_stats.gd" id="1_eun37"]
+
+[resource]
+script = ExtResource("1_eun37")
+hp = 5
+mp = 5
+max_hp = 5
+max_mp = 5
+damage = 1.0
+atackspeed = 1.0
+spell = 0

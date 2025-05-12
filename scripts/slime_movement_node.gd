@@ -31,13 +31,17 @@ func _on_health_component_on_damage_took() -> void:
 
 
 func _on_health_component_on_dead() -> void:
-	var slimeMinion = slime.slime_scene.instantiate()
-	slimeMinion.position = slime.position + Vector2(25, 5)
-	slime.get_parent().add_child(slimeMinion)
-	kill_confirm.emit()
+	#var slimeMinion = slime.slime_scene.instantiate()
+	#slimeMinion.position = slime.position + Vector2(25, 5)
+	#slime.get_parent().add_child(slimeMinion)
 	slime.anim.play("dead")
 
-
+func selectSpawnPoint():
+	match randi_range(0,1):
+		0:
+			return Vector2(25,0)
+		1:
+			return Vector2(-25,0)
 
 func _on_sensor_player_detected(body: Node) -> void:
 	slime.followAt = body

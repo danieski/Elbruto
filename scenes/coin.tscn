@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cdh8p3qpc5fap"]
 
-[ext_resource type="Script" path="res://scripts/area_2d.gd" id="1_wadv2"]
+[ext_resource type="Script" path="res://scripts/dollar_script.gd" id="1_wadv2"]
 [ext_resource type="Texture2D" uid="uid://c7hchietel3pn" path="res://Assets/sprites/dollar.png" id="2_vm8ry"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_eex68"]

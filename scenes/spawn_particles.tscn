@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://db7o8ov18fhpl"]
+
+[sub_resource type="Gradient" id="Gradient_4d1o0"]
+
+[node name="SpawnParticles" type="CPUParticles2D"]
+unique_name_in_owner = true
+emitting = false
+amount = 20
+one_shot = true
+emission_shape = 1
+emission_sphere_radius = 5.7
+direction = Vector2(0, 0)
+gravity = Vector2(0, 0)
+orbit_velocity_min = 1.0
+orbit_velocity_max = 5.0
+color = Color(0.708266, 0.000379463, 0.708261, 1)
+color_ramp = SubResource("Gradient_4d1o0")

@@ -1,2 +1,3 @@
+SpellStats
 CharacterStats
 Resource
