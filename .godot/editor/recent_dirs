@@ -1,8 +1,8 @@
-res://resources
-res://scenes
 res://Assets/sprites
-res://addons/dialogue_quest/resources/themes/default/components/stylebox
+res://scenes
 res://scripts
 res://Assets/gfx
+res://resources
+res://addons/dialogue_quest/resources/themes/default/components/stylebox
 res://
 res://StateMachine/

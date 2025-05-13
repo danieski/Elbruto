@@ -182,17 +182,17 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Spell" type="CharacterBody2D"]
+[node name="Spell" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_6t1vs")
 
 [node name="HurtBox" parent="." groups=["player"] instance=ExtResource("3_qcyvt")]
 
 [node name="CollisionShape2D2" parent="HurtBox" index="0"]
-position = Vector2(43, 0)
+position = Vector2(42.7072, -0.0338268)
 shape = SubResource("CircleShape2D_512rw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(45.784, 1.05112)
+position = Vector2(38.7072, -1.03383)
 rotation = 1.5708
 scale = Vector2(0.592691, 0.710942)
 sprite_frames = SubResource("SpriteFrames_x8c1g")

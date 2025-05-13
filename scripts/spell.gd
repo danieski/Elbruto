@@ -2,13 +2,28 @@ extends CharacterBody2D
 
 @export var stats : SpellStats 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hurt_box: HurtBox = $HurtBox
 
+var target : Vector2
+var isFromPlayer : bool
 func _ready() -> void:
 	selectType()
 	animated_sprite_2d.play()
-	var direction =get_global_mouse_position()-global_position
-	rotation = direction.angle()
-	velocity = direction * stats.Speed
+	if isFromPlayer:
+		hurt_box.remove_from_group("enemy")
+		hurt_box.add_to_group("player")
+		var direction =get_global_mouse_position() - position
+		rotation = direction.angle()
+		velocity = direction * stats.Speed
+
+	else:
+		hurt_box.remove_from_group("player")
+		hurt_box.add_to_group("enemy")
+		var direction = target - position
+		rotation = direction.angle()
+		velocity = direction * stats.Speed
+
+
 	await get_tree().create_timer(3).timeout
 	queue_free()
 func _physics_process(delta: float) -> void:

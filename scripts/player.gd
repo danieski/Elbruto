@@ -55,8 +55,10 @@ func _physics_process(delta: float) -> void:
 				stats.mp -= 1
 				hasShoot()
 				var spell = SPELL.instantiate()
-				spell.position = position
+				spell.global_position = position
+				#print("player position? ", position)
 				spell.stats = spellArray[selectionSpellCounter]
+				spell.isFromPlayer = true
 				get_parent().add_child(spell)
 				Global.updateHUD.emit()
 
