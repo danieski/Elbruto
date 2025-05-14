@@ -1,7 +1,7 @@
 extends Control
 func _ready() -> void:
 	%CanvasLayer.visible = false
-
+	Global.openShop.connect(shop_open)
 
 func _on_exit_pressed() -> void:
 	%CanvasLayer.visible = false

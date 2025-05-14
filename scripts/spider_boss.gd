@@ -8,7 +8,7 @@ class_name SpiderBoss
 @onready var path_follow_2d: PathFollow2D = $".."
 @onready var boss_chambre: Node2D = $"../../.."
 const SpiderSuperAtyackScene = preload("res://scenes/atack_spider.tscn")
-
+const SPAWN_PARTICLES = preload("res://scenes/spawn_particles.tscn")
 const spell = preload("res://scenes/spell.tscn")
 
 func _ready() -> void:
@@ -22,7 +22,14 @@ func _on_health_component_on_dead() -> void:
 	$Timer.stop()
 	$".".set_process(false)
 	animation_player.play("dead")
-
+	var particles = SPAWN_PARTICLES.instantiate()
+	particles.position = global_position
+	particles.emitting = true
+	get_parent().add_child(particles)
+	await animation_player.animation_finished
+	Global.getInside()
+	queue_free()
+	
 
 func test(value) -> void:
 	hit_flash_animation_player.play("hit_flash")

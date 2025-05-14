@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://by1emc1h75sjm"]
+[gd_scene load_steps=21 format=4 uid="uid://by1emc1h75sjm"]
 
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_dxgu6"]
 [ext_resource type="Texture2D" uid="uid://cx4thjdgcni1x" path="res://Assets/gfx/Inner.png" id="2_67u11"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://scripts/doorActionable.gd" id="4_a2rf6"]
 [ext_resource type="Resource" uid="uid://cuoqif6pd0nd1" path="res://dialog/doorDialog.dialogue" id="5_b5218"]
 [ext_resource type="Script" path="res://scripts/shop.gd" id="6_1ka86"]
+[ext_resource type="Resource" uid="uid://c5ngvo8f1f71f" path="res://dialog/shopDialog.dialogue" id="7_m6t6c"]
 [ext_resource type="PackedScene" uid="uid://clkn333emqg4p" path="res://scenes/shop.tscn" id="7_r6jsm"]
+[ext_resource type="Texture2D" uid="uid://bpauc51v0qnag" path="res://Assets/sprites/knight.png" id="9_8wj1d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgdsa"]
 texture = ExtResource("1_dxgu6")
@@ -1624,7 +1626,43 @@ texture = ExtResource("2_67u11")
 sources/0 = SubResource("TileSetAtlasSource_51qix")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kx45i"]
-size = Vector2(16, 15)
+size = Vector2(26, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6j3p0"]
+atlas = ExtResource("9_8wj1d")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_via0j"]
+atlas = ExtResource("9_8wj1d")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mrbr7"]
+atlas = ExtResource("9_8wj1d")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbfsl"]
+atlas = ExtResource("9_8wj1d")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qarar"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6j3p0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_via0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mrbr7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbfsl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Interior" type="Node2D"]
 
@@ -1664,15 +1702,20 @@ position = Vector2(21, 62)
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("6_1ka86")
+dialogue_resource = ExtResource("7_m6t6c")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="shop"]
-position = Vector2(66, 25)
+position = Vector2(-13, 26)
 shape = SubResource("RectangleShape2D_kx45i")
 
 [node name="Shop" parent="shop/CollisionShape2D" instance=ExtResource("7_r6jsm")]
 unique_name_in_owner = true
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 82)
+sprite_frames = SubResource("SpriteFrames_qarar")
+frame_progress = 0.206738
+
 [editable path="Player"]
 [editable path="Player/HurtBox"]
 [editable path="Player/Hit_box"]
-[editable path="Player/HUD"]

@@ -34,7 +34,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_62u6o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w6cwu"]
 resource_local_to_scene = true
 shader = ExtResource("4_p2rl3")
 shader_parameter/enabled = false
@@ -492,7 +492,7 @@ scale = Vector2(0.026, 0.024)
 sprite_frames = SubResource("SpriteFrames_afp2p")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
-material = SubResource("ShaderMaterial_62u6o")
+material = SubResource("ShaderMaterial_w6cwu")
 position = Vector2(0.999999, 1)
 scale = Vector2(1, 0.9375)
 sprite_frames = SubResource("SpriteFrames_h4x55")
