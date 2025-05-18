@@ -2362,7 +2362,6 @@ polygon = PackedVector2Array(-265, -77, -263, -39, -224, -40, -225, -73)
 
 [node name="Spawner" parent="." instance=ExtResource("3_dcmgn")]
 enemyStats = ExtResource("5_6s000")
-number_of_enemys = 4
 
 [node name="Spawner" parent="Spawner" index="2"]
 position = Vector2(-37, 101)

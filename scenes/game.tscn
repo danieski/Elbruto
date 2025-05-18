@@ -2687,7 +2687,6 @@ position_smoothing_enabled = true
 
 [node name="Spawner" parent="." instance=ExtResource("6_keefx")]
 enemyStats = ExtResource("6_fnotb")
-number_of_enemys = 7
 
 [node name="Spawner" parent="Spawner" index="2"]
 position = Vector2(-192, 148)

@@ -1,8 +1,9 @@
 extends Node
+
 @export var enemyStats: Resource
-@export var number_of_enemys = 0
-@export var nEnemysEachRound = 2
-@export var maxNRounds = 3
+var currentRound = 1
+var nEnemysRound = 2
+var maxNRounds = 3 * Global.loop
 var particle_scene: PackedScene = preload("res://scenes/spawn_particles.tscn")
 var slime_scene: PackedScene = preload("res://scenes/slime.tscn")
 var bat_scene: PackedScene = preload("res://scenes/bat_enemy.tscn")
@@ -10,70 +11,66 @@ var bat_scene: PackedScene = preload("res://scenes/bat_enemy.tscn")
 
 
 var spawnOffset: Array[Vector2] = [Vector2(20,20),Vector2(-20,20),Vector2(20,-20),Vector2(-20,-20)]
-var enemysSpawned =0
-var lastEnemysWave
-var arrayEnemigos = []
+var enemys_spawned = 0
+#var lastEnemysWave
+var EnemyPool = []
 
 
 
 
 func _ready() -> void:
-	#$Spawner/SpawnParticles.restart()
-	preparePool()
-	Global.round = 1
-	pass
+	currentRound = 0
+	init_pool()
+
 	
-func preparePool():
-	for i in number_of_enemys:
+func init_pool():
+	for i in maxNRounds*nEnemysRound:
 		match randi_range(1,2):
 			1:
-				arrayEnemigos.append(slime_scene.instantiate())
+				EnemyPool.append(slime_scene.instantiate())
 			2:
-				arrayEnemigos.append(bat_scene.instantiate())
+				EnemyPool.append(bat_scene.instantiate())
 		
-func spawnRound():
-	var nEnemysRound = Global.round * nEnemysEachRound
-	
+func spawn_round():
+	if (maxNRounds <= currentRound): return
 	for i in range(nEnemysRound):		
-		spawnEnemy(enemysSpawned ,selectSpawner())
-		enemysSpawned += 1
-
-	if(maxNRounds >= Global.round):
-		Global.updateHUD.emit()
-		Global.round += 1
-		lastEnemysWave = enemysSpawned
-func spawnEnemy(enemysSpawned,spawnPos):
-	if (enemysSpawned<arrayEnemigos.size()):
+		spawn_enemy(enemys_spawned ,spawn_location())
+		enemys_spawned += 1
+	currentRound += 1
+	Global.round = currentRound
+	Global.updateHUD.emit()
+	#if(maxNRounds >= Global.round):
+		#Global.updateHUD.emit()
+		#Global.round += 1
+		#lastEnemysWave = enemysSpawned
+func spawn_enemy(enemys_spawned,spawnPos):
+	if (enemys_spawned<EnemyPool.size()):
+		#Particulas Spawneo
 		var spawn_particles =  particle_scene.instantiate()
 		spawn_particles.global_position = spawnPos
 		spawn_particles.emitting = true
 		get_parent().add_child(spawn_particles)
 		await spawn_particles.finished
-
-		var enemy = arrayEnemigos[enemysSpawned]
+		#Enemigo Spawneo
+		var enemy = EnemyPool[enemys_spawned]
 		enemy.position = spawnPos
 		enemy.stats = enemyStats
-
-			
 		get_parent().add_child(enemy)
 
 
-func selectSpawner():
+func spawn_location():
 	return spawnPoints[randi_range(0,3)].position + spawnOffset[randi_range(0,3)]
 
 
-func _on_round_timer_2_timeout() -> void:
-	spawnRound()
-
-
-
-
-func _on_check_enemys_2_timeout() -> void:
+func check_enemys_alive() -> void:
 	var enemysAlive = 0
-	for i in arrayEnemigos:
+	for i in EnemyPool:
 		if i != null:
 			enemysAlive += 1
 	if enemysAlive == 0:
 		Global.etage += 1
 		get_tree().change_scene_to_file("res://scenes/interior.tscn")
 	
+
+func next_round_timer() -> void:
+	spawn_round()

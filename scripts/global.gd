@@ -2,6 +2,7 @@ extends Node
 var etage = 1
 var money = 50
 var round = 1
+var loop = 2
 var introduction = true
 var player_stats = preload("res://resources/player_stats_resource.tres")
 signal change_round(nRound)
@@ -32,5 +33,6 @@ func getOutside():
 			get_tree().change_scene_to_file("res://scenes/castillo.tscn")
 		4:
 			get_tree().change_scene_to_file("res://scenes/boss_chambre.tscn")
+			loop += 1
 func openShopFunc():
 	openShop.emit()

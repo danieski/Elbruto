@@ -5,11 +5,11 @@
 [node name="Spawner" type="Node"]
 script = ExtResource("1_vpckd")
 
-[node name="roundTimer2" type="Timer" parent="."]
+[node name="RoundTimer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
-[node name="checkEnemys2" type="Timer" parent="."]
+[node name="CheckEnemysAlive" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
@@ -21,5 +21,7 @@ autostart = true
 
 [node name="Spawner4" type="Marker2D" parent="."]
 
-[connection signal="timeout" from="roundTimer2" to="." method="_on_round_timer_2_timeout"]
-[connection signal="timeout" from="checkEnemys2" to="." method="_on_check_enemys_2_timeout"]
+[connection signal="timeout" from="RoundTimer" to="." method="next_round_timer"]
+[connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_2_timeout"]
+[connection signal="timeout" from="CheckEnemysAlive" to="." method="check_enemys_alive"]
+[connection signal="timeout" from="CheckEnemysAlive" to="." method="_on_check_enemys_2_timeout"]
