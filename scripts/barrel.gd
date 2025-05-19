@@ -15,11 +15,12 @@ func _on_health_component_on_dead() -> void:
 	reward()
 	
 func reward():
-	match randi_range(0,1):
-		0:
-			animation_player.play("boom")
-		1:
-			var reward = coin.instantiate()
-			reward.position = position
-			get_parent().get_parent().add_child(reward)
-			queue_free()
+	animation_player.play("boom")
+	#match randi_range(0,1):
+		#0:
+			#animation_player.play("boom")
+		#1:
+			#var reward = coin.instantiate()
+			#reward.position = position
+			#get_parent().get_parent().add_child(reward)
+			#queue_free()

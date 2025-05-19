@@ -30,7 +30,7 @@ func init_pool():
 				EnemyPool.append(slime_scene.instantiate())
 			2:
 				EnemyPool.append(bat_scene.instantiate())
-		
+
 func spawn_round():
 	if (maxNRounds <= currentRound): return
 	for i in range(nEnemysRound):		

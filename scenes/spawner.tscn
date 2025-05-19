@@ -23,5 +23,5 @@ autostart = true
 
 [connection signal="timeout" from="RoundTimer" to="." method="next_round_timer"]
 [connection signal="timeout" from="RoundTimer" to="." method="_on_round_timer_2_timeout"]
-[connection signal="timeout" from="CheckEnemysAlive" to="." method="check_enemys_alive"]
 [connection signal="timeout" from="CheckEnemysAlive" to="." method="_on_check_enemys_2_timeout"]
+[connection signal="timeout" from="CheckEnemysAlive" to="." method="check_enemys_alive"]
