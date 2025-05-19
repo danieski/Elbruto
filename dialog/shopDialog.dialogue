@@ -1,0 +1,14 @@
+~ this_is_a_node_title
+if introduction:
+	Friend: Hi, are you?
+	You: Hi, Im the tuffest guy in the world.
+	set introduction = false
+if etage == 4:
+	Friend: Your next opennent its [wave]tuff...[/wave]
+	You: Yes but I'm tuffer.
+
+% Friend: [[Hi|Hello|Whats up]], tuff guy Ill sell you good quality stuff.
+% Friend: [[Hi|Hello|Howdy]], this might help you on your journey.
+do openShop.emit()
+
+=> END

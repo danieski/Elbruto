@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3f5cxipw815"]
+
+[ext_resource type="Script" path="res://scripts/hit_box.gd" id="1_apk6e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dhp5j"]
+
+[node name="Hit_box" type="Area2D"]
+collision_layer = 64
+collision_mask = 32
+script = ExtResource("1_apk6e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_dhp5j")

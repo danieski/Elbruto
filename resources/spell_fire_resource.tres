@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpellStats" load_steps=4 format=3 uid="uid://b616pbd20r0bi"]
+
+[ext_resource type="Script" path="res://resources/spellStats.gd" id="1_6rlta"]
+[ext_resource type="Texture2D" uid="uid://dk8xx2rc8c7is" path="res://Assets/sprites/fireballicon.png" id="2_e81v4"]
+[ext_resource type="Texture2D" uid="uid://c6h0i3p2lsy2n" path="res://Assets/sprites/fireballiconcd.png" id="3_ag5l7"]
+
+[resource]
+script = ExtResource("1_6rlta")
+type = 0
+damage = 1
+Speed = 1.0
+cooldown = 1.0
+cost = 1
+sprite = ExtResource("2_e81v4")
+spriteCD = ExtResource("3_ag5l7")

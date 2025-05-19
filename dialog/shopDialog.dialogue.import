@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_13"
+type="Resource"
+uid="uid://c5ngvo8f1f71f"
+path="res://.godot/imported/shopDialog.dialogue-596de5fef672742820c627e074f46340.tres"
+
+[deps]
+
+source_file="res://dialog/shopDialog.dialogue"
+dest_files=["res://.godot/imported/shopDialog.dialogue-596de5fef672742820c627e074f46340.tres"]
+
+[params]
+
+defaults=true

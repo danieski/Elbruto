@@ -1,0 +1,244 @@
+[gd_scene load_steps=19 format=3 uid="uid://p5q3inhfkki8"]
+
+[ext_resource type="Script" path="res://scripts/canvas_layer.gd" id="1_0sqri"]
+[ext_resource type="StyleBox" uid="uid://c8fq84pupm25w" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/HUD_Panen_Style.tres" id="2_4xg6w"]
+[ext_resource type="StyleBox" uid="uid://dvtav16gx0cbc" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/default_panel_foreground.tres" id="3_df8da"]
+[ext_resource type="Texture2D" uid="uid://btpatvbckdt8t" path="res://Assets/sprites/Player.png" id="4_hkyd4"]
+[ext_resource type="Texture2D" uid="uid://bxnglljvyjmnv" path="res://Assets/sprites/emptyheart.png" id="4_or0ck"]
+[ext_resource type="Texture2D" uid="uid://dny30ucgg30e5" path="res://Assets/sprites/heart pixel art 64x64.png" id="5_xxf3l"]
+[ext_resource type="Texture2D" uid="uid://ps7rf6nnfmyv" path="res://Assets/sprites/CDHeart.png" id="6_iegvh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_11014"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vgsjf"]
+bg_color = Color(1, 0.152941, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3nrbg"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mkyv"]
+bg_color = Color(0, 0, 0.92549, 1)
+border_color = Color(0.8, 0.8, 0.8, 0)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdsn8"]
+atlas = ExtResource("4_hkyd4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqui"]
+atlas = ExtResource("4_hkyd4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1yqmm"]
+atlas = ExtResource("4_hkyd4")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uoa4j"]
+atlas = ExtResource("4_hkyd4")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tuh4"]
+atlas = ExtResource("4_hkyd4")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o028i"]
+atlas = ExtResource("4_hkyd4")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vfkjd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdsn8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1yqmm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uoa4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tuh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o028i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_0sqri")
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -272.0
+offset_right = 262.0
+offset_bottom = 62.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_styles/panel = ExtResource("2_4xg6w")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="hp" type="ProgressBar" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_11014")
+theme_override_styles/fill = SubResource("StyleBoxFlat_vgsjf")
+
+[node name="PanelContainer" type="PanelContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_df8da")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="round" type="Label" parent="Panel/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Round: "
+
+[node name="nRound" type="Label" parent="Panel/HBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "1
+"
+
+[node name="mana" type="ProgressBar" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 6
+theme_override_styles/background = SubResource("StyleBoxFlat_3nrbg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5mkyv")
+value = 22.07
+
+[node name="MarginContainer2" type="MarginContainer" parent="Panel/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="."]
+offset_right = 164.0
+offset_bottom = 198.0
+theme_override_styles/panel = ExtResource("2_4xg6w")
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="Panel2"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 91.0
+offset_right = 72.0
+offset_bottom = 195.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel2/HBoxContainer5"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="Panel2/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel2/HBoxContainer5/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "DMG: "
+
+[node name="dmg" type="Label" parent="Panel2/HBoxContainer5/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "0
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel2/HBoxContainer5/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "HP: "
+
+[node name="hp" type="Label" parent="Panel2/HBoxContainer5/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "0
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel2/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel2/HBoxContainer5/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "MP: "
+
+[node name="mp" type="Label" parent="Panel2/HBoxContainer5/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "0
+"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="Panel2/HBoxContainer5/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel2/HBoxContainer5/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "AS:"
+
+[node name="atackspeed" type="Label" parent="Panel2/HBoxContainer5/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "0
+"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2/HBoxContainer5"]
+layout_mode = 2
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Panel2/HBoxContainer5/HBoxContainer"]
+layout_mode = 2
+texture_under = ExtResource("4_or0ck")
+texture_over = ExtResource("5_xxf3l")
+texture_progress = ExtResource("6_iegvh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel2"]
+position = Vector2(53, 57.5)
+scale = Vector2(3, 3.28125)
+sprite_frames = SubResource("SpriteFrames_vfkjd")
+autoplay = "default"
+frame_progress = 0.330968

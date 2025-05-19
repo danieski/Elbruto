@@ -1,0 +1,105 @@
+[gd_scene load_steps=15 format=3 uid="uid://sxwq0jcuoynw"]
+
+[ext_resource type="Script" path="res://scripts/sword.gd" id="1_loisy"]
+[ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="2_5dc4s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0jpf"]
+size = Vector2(20, 12.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3g1ji"]
+load_path = "res://.godot/imported/pixel_art_sword_slash_sprites.png-e12daa921c8281101f10df7db1fb3eef.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d8ex"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(0, 0, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6f58d"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(64, 0, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwy6p"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(128, 0, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7gho"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(0, 47, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fe2ev"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(64, 47, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxix5"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(128, 47, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfgf3"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(0, 94, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sy6w1"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(64, 94, 64, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ottjk"]
+atlas = SubResource("CompressedTexture2D_3g1ji")
+region = Rect2(128, 94, 64, 47)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_17q2y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d8ex")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6f58d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwy6p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7gho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fe2ev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxix5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfgf3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sy6w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ottjk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Spell" type="Node2D"]
+scale = Vector2(0.4, 0.4)
+script = ExtResource("1_loisy")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -11.67)
+
+[node name="HurtBox" parent="Marker2D" groups=["player"] instance=ExtResource("2_5dc4s")]
+position = Vector2(50, -5)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D2" parent="Marker2D/HurtBox" index="0"]
+position = Vector2(0, 0.140001)
+shape = SubResource("RectangleShape2D_k0jpf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Marker2D"]
+position = Vector2(50, 0)
+sprite_frames = SubResource("SpriteFrames_17q2y")
+autoplay = "default"
+frame = 1
+frame_progress = 0.537116
+
+[editable path="Marker2D/HurtBox"]

@@ -5,7 +5,12 @@ func on_physics_process(delta):
 	controlled_node.velocity = direction * controlled_node.SPEED
 	var distance = controlled_node.position.distance_to(controlled_node.player.position)
 	controlled_node.animation_player.play("running_right")
-	if distance < controlled_node.TRAKING_RADIUS:
-		state_machine.change_to("NPCStateIdle")
+
 		
 	controlled_node.move_and_slide()
+
+
+func _on_sensor_player_lost() ->  void:
+	print("player lost")
+	print(get_parent().get_parent())
+	state_machine.change_to("NPCStateIdle")

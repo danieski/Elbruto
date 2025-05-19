@@ -38,6 +38,11 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 4.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walking",
+"speed": 5.0
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tflae"]
@@ -45,7 +50,7 @@ radius = 8.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 sprite_frames = SubResource("SpriteFrames_kftpr")
-animation = &"idle"
+animation = &"walking"
 autoplay = "default"
 
 [node name="actionable" type="Area2D" parent="."]

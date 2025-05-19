@@ -1,0 +1,9 @@
+~ this_is_a_node_title
+Quieres salir?
+- Si
+	Salimos.
+	do getOutside()
+
+- No
+	=> END
+=> END

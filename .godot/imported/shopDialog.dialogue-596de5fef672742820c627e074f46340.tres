@@ -1,0 +1,199 @@
+[gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_rfuvg"]
+
+[resource]
+script = ExtResource("1_rfuvg")
+using_states = PackedStringArray()
+titles = {
+"this_is_a_node_title": "2"
+}
+character_names = PackedStringArray("Friend", "You")
+first_title = "2"
+lines = {
+"1": {
+"id": "1",
+"next_id": "2",
+"text": "this_is_a_node_title",
+"type": &"title"
+},
+"10": {
+"character": "Friend",
+"character_replacements": Array[Dictionary]([]),
+"id": "10",
+"next_id": "12",
+"notes": "",
+"siblings": [{
+"condition": {},
+"id": "10",
+"weight": 1.0
+}, {
+"condition": {},
+"id": "11",
+"weight": 1.0
+}],
+"tags": PackedStringArray(),
+"text": "[[Hi|Hello|Whats up]], tuff guy Ill sell you good quality stuff.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "[[Hi|Hello|Whats up]], tuff guy Ill sell you good quality stuff.",
+"type": &"dialogue"
+},
+"11": {
+"character": "Friend",
+"character_replacements": Array[Dictionary]([]),
+"id": "11",
+"next_id": "12",
+"notes": "",
+"tags": PackedStringArray(),
+"text": "[[Hi|Hello|Howdy]], this might help you on your journey.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "[[Hi|Hello|Howdy]], this might help you on your journey.",
+"type": &"dialogue"
+},
+"12": {
+"id": "12",
+"mutation": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "openShop"
+}, {
+"type": "dot"
+}, {
+"function": "emit",
+"type": &"function",
+"value": Array[Array]([])
+}]),
+"is_blocking": true
+},
+"next_id": "14",
+"type": &"mutation"
+},
+"14": {
+"id": "14",
+"is_snippet": false,
+"next_id": "end",
+"type": &"goto"
+},
+"2": {
+"condition": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "introduction"
+}, {
+"type": "colon"
+}])
+},
+"id": "2",
+"next_conditional_id": "6",
+"next_id": "3",
+"next_id_after": "6",
+"type": &"condition"
+},
+"3": {
+"character": "Friend",
+"character_replacements": Array[Dictionary]([]),
+"id": "3",
+"next_id": "4",
+"notes": "",
+"parent_id": "2",
+"tags": PackedStringArray(),
+"text": "Hi, are you?",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Hi, are you?",
+"type": &"dialogue"
+},
+"4": {
+"character": "You",
+"character_replacements": Array[Dictionary]([]),
+"id": "4",
+"next_id": "5",
+"notes": "",
+"parent_id": "2",
+"tags": PackedStringArray(),
+"text": "Hi, Im the tuffest guy in the world.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Hi, Im the tuffest guy in the world.",
+"type": &"dialogue"
+},
+"5": {
+"id": "5",
+"mutation": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "introduction"
+}, {
+"type": "assignment",
+"value": "="
+}, {
+"type": "variable",
+"value": "false"
+}]),
+"is_blocking": true
+},
+"next_id": "6",
+"parent_id": "2",
+"type": &"mutation"
+},
+"6": {
+"condition": {
+"expression": Array[Dictionary]([{
+"type": "variable",
+"value": "etage"
+}, {
+"type": "comparison",
+"value": "=="
+}, {
+"type": "number",
+"value": 4
+}, {
+"type": "colon"
+}])
+},
+"id": "6",
+"next_conditional_id": "10",
+"next_id": "7",
+"next_id_after": "10",
+"type": &"condition"
+},
+"7": {
+"character": "Friend",
+"character_replacements": Array[Dictionary]([]),
+"id": "7",
+"next_id": "8",
+"notes": "",
+"parent_id": "6",
+"tags": PackedStringArray(),
+"text": "Your next opennent its [wave]tuff...[/wave]",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Your next opennent its [wave]tuff...[/wave]",
+"type": &"dialogue"
+},
+"8": {
+"character": "You",
+"character_replacements": Array[Dictionary]([]),
+"id": "8",
+"next_id": "10",
+"notes": "",
+"parent_id": "6",
+"tags": PackedStringArray(),
+"text": "Yes but I'm tuffer.",
+"text_replacements": Array[Dictionary]([]),
+"translation_key": "Yes but I'm tuffer.",
+"type": &"dialogue"
+}
+}
+raw_text = "~ this_is_a_node_title
+if introduction:
+	Friend: Hi, are you?
+	You: Hi, Im the tuffest guy in the world.
+	set introduction = false
+if etage == 4:
+	Friend: Your next opennent its [wave]tuff...[/wave]
+	You: Yes but I'm tuffer.
+
+% Friend: [[Hi|Hello|Whats up]], tuff guy Ill sell you good quality stuff.
+% Friend: [[Hi|Hello|Howdy]], this might help you on your journey.
+do openShop.emit()
+
+=> END"
+metadata/dialogue_manager_version = "2.45.0"
