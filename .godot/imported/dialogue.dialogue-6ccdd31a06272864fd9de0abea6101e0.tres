@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="DialogueResource" load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_yj6ng"]
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_resource.gd" id="1_3rwnf"]
 
 [resource]
-script = ExtResource("1_yj6ng")
+script = ExtResource("1_3rwnf")
 using_states = PackedStringArray()
 titles = {
 "pick_treasure": "7",
