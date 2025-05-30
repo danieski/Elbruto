@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://b47t7wxt7kiv0"]
+[gd_scene load_steps=39 format=3 uid="uid://b47t7wxt7kiv0"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_ormnt"]
 [ext_resource type="Texture2D" uid="uid://gj84krdhayoo" path="res://Assets/sprites/sparks.png" id="2_7hspv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Material" uid="uid://b2sg6ojt8kw4f" path="res://Assets/sprites/hit_flash_mat.tres" id="5_7g4fc"]
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="5_a0m8v"]
 [ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="6_0ljth"]
+[ext_resource type="AudioStream" uid="uid://d1vb2ggdado4d" path="res://Assets/sounds/hurt.wav" id="8_d1nlf"]
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="8_pl1sb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_324is"]
@@ -310,6 +311,35 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"hit"]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("8_d1nlf")
+}],
+"times": PackedFloat32Array(0.0333333)
+}
+tracks/2/use_blend = true
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_owdwi"]
 resource_name = "idle"
@@ -417,6 +447,8 @@ position = Vector2(1, 1)
 [node name="HealthComponent" parent="." instance=ExtResource("6_0ljth")]
 
 [node name="Sensor" parent="." instance=ExtResource("8_pl1sb")]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
 [connection signal="onDamageTaken" from="HealthComponent" to="." method="_on_health_component_on_damage_taken"]

@@ -1,0 +1,14 @@
+res://scenes/bat_enemy.tscn
+res://resources/player_stats_resource.tres
+res://Assets/sprites/hitflash.tres
+res://scripts/canvas_layer.gd
+res://addons/dialogue_quest/resources/themes/default/components/stylebox/HUD_Panen_Style.tres
+res://Assets/sprites/hit_flash_mat.tres
+res://scripts/barrel.gd
+res://scenes/Player.tscn
+res://scenes/game.tscn
+res://scenes/npc.tscn
+res://scenes/barrel.tscn
+res://scenes/interior.tscn
+res://scenes/slime.tscn
+res://scenes/HitParticles.tscn

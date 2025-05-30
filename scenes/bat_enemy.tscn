@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://qyjtd2ihs6p6"]
+[gd_scene load_steps=49 format=3 uid="uid://qyjtd2ihs6p6"]
 
 [ext_resource type="PackedScene" uid="uid://cgh462ipfngmi" path="res://scenes/npc.tscn" id="1_1av6q"]
 [ext_resource type="Script" path="res://scripts/bat.gd" id="1_q2nxc"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bkx53uuv256rn" path="res://Assets/sprites/piskel_bat.png" id="5_iu1tm"]
 [ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="7_0s3b6"]
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="8_ll31w"]
+[ext_resource type="AudioStream" uid="uid://d1vb2ggdado4d" path="res://Assets/sounds/hurt.wav" id="10_qcr4u"]
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="11_b16a5"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="12_ubm41"]
 
@@ -34,7 +35,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgcps"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cdpm"]
 resource_local_to_scene = true
 shader = ExtResource("4_p2rl3")
 shader_parameter/enabled = false
@@ -203,6 +204,21 @@ tracks/0/keys = {
 "update": 1,
 "values": [false, true]
 }
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_qcr4u")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
 
 [sub_resource type="Animation" id="Animation_kvspn"]
 resource_name = "hit_flash"
@@ -480,6 +496,8 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_2w702"]
 radius = 9.61488
 
+[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ocil2"]
+
 [node name="BatEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 65
 script = ExtResource("1_q2nxc")
@@ -492,7 +510,7 @@ scale = Vector2(0.026, 0.024)
 sprite_frames = SubResource("SpriteFrames_afp2p")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
-material = SubResource("ShaderMaterial_wgcps")
+material = SubResource("ShaderMaterial_6cdpm")
 position = Vector2(0.999999, 1)
 scale = Vector2(1, 0.9375)
 sprite_frames = SubResource("SpriteFrames_h4x55")
@@ -522,6 +540,9 @@ scale = Vector2(0.945, 0.81)
 
 [node name="CollisionShape2D2" parent="HurtBox" index="0"]
 shape = SubResource("CircleShape2D_2w702")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamPolyphonic_ocil2")
 
 [connection signal="onDamageTaken" from="HealthComponent" to="." method="_on_health_component_on_damage_taken"]
 [connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
