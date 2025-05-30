@@ -1,6 +1,7 @@
+AnimationPlayer
+GPUParticles2D
 AnimatedSprite2D
 Marker2D
-AnimationPlayer
 Timer
 Sprite2D
 PathFollow2D
@@ -11,4 +12,3 @@ CharacterBody2D
 TileMapLayer
 CPUParticles2D
 TextureProgressBar
-HBoxContainer

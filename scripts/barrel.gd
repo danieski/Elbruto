@@ -6,11 +6,12 @@ extends Node2D
 #const RED = preload("res://resources/red.tres")
 var stats : CharacterStats = preload("res://resources/red.tres")
 var coin: PackedScene = preload("res://scenes/coin.tscn")
-func _ready() -> void:
-	print("PORQUE INV?")
-func _on_health_component_on_damage_taken() -> void:
-	print("damege took barrel")
+var hit_particles_scene = preload("res://scenes/HitParticles.tscn")
+@onready var hit_flash: AnimationPlayer = $hitFlash
 
+func _on_health_component_on_damage_taken(damage) -> void:
+	print("damege took barrel")
+	hit_flash.play("hit_flash")
 
 func _on_health_component_on_dead() -> void:
 	animation_player.play("destroying")

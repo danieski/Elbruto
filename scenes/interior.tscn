@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://by1emc1h75sjm"]
+[gd_scene load_steps=23 format=4 uid="uid://by1emc1h75sjm"]
 
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_dxgu6"]
 [ext_resource type="Texture2D" uid="uid://cx4thjdgcni1x" path="res://Assets/gfx/Inner.png" id="2_67u11"]
@@ -9,7 +9,8 @@
 [ext_resource type="Resource" uid="uid://c5ngvo8f1f71f" path="res://dialog/shopDialog.dialogue" id="7_m6t6c"]
 [ext_resource type="PackedScene" uid="uid://clkn333emqg4p" path="res://scenes/shop.tscn" id="7_r6jsm"]
 [ext_resource type="Texture2D" uid="uid://bpauc51v0qnag" path="res://Assets/sprites/knight.png" id="9_8wj1d"]
-[ext_resource type="PackedScene" uid="uid://12m62tgdd131" path="res://scenes/barrel.tscn" id="10_jbmxx"]
+[ext_resource type="PackedScene" uid="uid://b47t7wxt7kiv0" path="res://scenes/slime.tscn" id="10_ubcct"]
+[ext_resource type="Resource" uid="uid://vy5hy6uhmwmm" path="res://resources/red.tres" id="11_bl7qj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgdsa"]
 texture = ExtResource("1_dxgu6")
@@ -1717,8 +1718,9 @@ position = Vector2(9, 82)
 sprite_frames = SubResource("SpriteFrames_qarar")
 frame_progress = 0.206738
 
-[node name="Barrel" parent="." instance=ExtResource("10_jbmxx")]
-position = Vector2(-40, -11)
+[node name="Slime" parent="." node_paths=PackedStringArray("followAt") instance=ExtResource("10_ubcct")]
+followAt = NodePath("../Player")
+stats = ExtResource("11_bl7qj")
 
 [editable path="Player"]
 [editable path="Player/HurtBox"]

@@ -1,7 +1,7 @@
 [gd_scene load_steps=47 format=3 uid="uid://qyjtd2ihs6p6"]
 
 [ext_resource type="PackedScene" uid="uid://cgh462ipfngmi" path="res://scenes/npc.tscn" id="1_1av6q"]
-[ext_resource type="Script" path="res://scripts/follower_npc.gd" id="1_q2nxc"]
+[ext_resource type="Script" path="res://scripts/bat.gd" id="1_q2nxc"]
 [ext_resource type="Texture2D" uid="uid://qele6pqufk74" path="res://Assets/Gizmo/blue-triangle-1.png" id="2_jvo3r"]
 [ext_resource type="Texture2D" uid="uid://bpauc51v0qnag" path="res://Assets/sprites/knight.png" id="3_07ijw"]
 [ext_resource type="Texture2D" uid="uid://dmu7oo7snam1q" path="res://Assets/Gizmo/Green_triangle.svg.png" id="3_pen8i"]
@@ -34,7 +34,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fgfgi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wgcps"]
 resource_local_to_scene = true
 shader = ExtResource("4_p2rl3")
 shader_parameter/enabled = false
@@ -492,7 +492,7 @@ scale = Vector2(0.026, 0.024)
 sprite_frames = SubResource("SpriteFrames_afp2p")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
-material = SubResource("ShaderMaterial_fgfgi")
+material = SubResource("ShaderMaterial_wgcps")
 position = Vector2(0.999999, 1)
 scale = Vector2(1, 0.9375)
 sprite_frames = SubResource("SpriteFrames_h4x55")
@@ -526,6 +526,7 @@ shape = SubResource("CircleShape2D_2w702")
 [connection signal="onDamageTaken" from="HealthComponent" to="." method="_on_health_component_on_damage_taken"]
 [connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
 [connection signal="player_detected" from="Sensor" to="." method="_on_sensor_player_detected"]
+[connection signal="on_health_changed" from="Hit_box" to="." method="_on_hit_box_on_health_changed"]
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
 
 [editable path="HurtBox"]

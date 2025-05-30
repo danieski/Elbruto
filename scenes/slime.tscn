@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://gj84krdhayoo" path="res://Assets/sprites/sparks.png" id="2_7hspv"]
 [ext_resource type="Texture2D" uid="uid://dmu7oo7snam1q" path="res://Assets/Gizmo/Green_triangle.svg.png" id="2_pc7oi"]
 [ext_resource type="Texture2D" uid="uid://dfyj0mxfdy1um" path="res://Assets/sprites/slime_green.png" id="2_ueigv"]
-[ext_resource type="Script" path="res://scripts/slime_movement_node.gd" id="3_1tl85"]
 [ext_resource type="Texture2D" uid="uid://qele6pqufk74" path="res://Assets/Gizmo/blue-triangle-1.png" id="3_8ufvm"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="4_v5uhc"]
 [ext_resource type="Texture2D" uid="uid://cvwsiaftl86kj" path="res://Assets/Gizmo/Red_Triangle.png" id="4_ygy61"]
+[ext_resource type="Material" uid="uid://b2sg6ojt8kw4f" path="res://Assets/sprites/hit_flash_mat.tres" id="5_7g4fc"]
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="5_a0m8v"]
 [ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="6_0ljth"]
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="8_pl1sb"]
@@ -367,23 +367,6 @@ tracks/1/keys = {
 "update": 1,
 "values": [&"move"]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MovementNode")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.0333333, 0.933333),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"jump"
-}, {
-"args": [],
-"method": &"noJump"
-}]
-}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_f5euj"]
 _data = {
@@ -397,9 +380,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gv68h"]
 size = Vector2(22.2222, 13.1387)
 
-[node name="Slime" type="CharacterBody2D" node_paths=PackedStringArray("anim")]
+[node name="Slime" type="CharacterBody2D"]
 script = ExtResource("1_ormnt")
-anim = NodePath("AnimationPlayer")
 
 [node name="Gizmo" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -10.04)
@@ -407,6 +389,7 @@ scale = Vector2(0.026, 0.0241666)
 sprite_frames = SubResource("SpriteFrames_324is")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = ExtResource("5_7g4fc")
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_e5i0j")
 animation = &"hit"
@@ -414,9 +397,6 @@ animation = &"hit"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_iiivp")
-
-[node name="MovementNode" type="Node" parent="."]
-script = ExtResource("3_1tl85")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -439,10 +419,9 @@ position = Vector2(1, 1)
 [node name="Sensor" parent="." instance=ExtResource("8_pl1sb")]
 
 [connection signal="on_health_changed" from="Hit_box" to="HealthComponent" method="_on_hit_box_on_health_changed"]
-[connection signal="onDamageTaken" from="HealthComponent" to="MovementNode" method="_on_health_component_on_damage_taken"]
-[connection signal="onDead" from="HealthComponent" to="MovementNode" method="_on_health_component_on_dead"]
-[connection signal="player_detected" from="Sensor" to="MovementNode" method="_on_sensor_player_detected"]
-[connection signal="player_lost" from="Sensor" to="MovementNode" method="_on_sensor_player_lost"]
+[connection signal="onDamageTaken" from="HealthComponent" to="." method="_on_health_component_on_damage_taken"]
+[connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
+[connection signal="player_detected" from="Sensor" to="." method="player_detected"]
 
 [editable path="HurtBox"]
 [editable path="Hit_box"]
