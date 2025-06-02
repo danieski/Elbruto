@@ -9,7 +9,7 @@ var slime_scene: PackedScene = preload("res://scenes/slime.tscn")
 var bat_scene: PackedScene = preload("res://scenes/bat_enemy.tscn")
 var barrel_scene: PackedScene = preload("res://scenes/barrel.tscn")
 @onready var spawnPoints: Array[Node2D] = [$Spawner,$Spawner2,$Spawner3,$Spawner4]
-
+signal changeScene
 
 var spawnOffset: Array[Vector2] = [Vector2(20,20),Vector2(-20,20),Vector2(20,-20),Vector2(-20,-20)]
 var enemys_spawned = 0
@@ -74,7 +74,8 @@ func check_enemys_alive() -> void:
 			enemysAlive += 1
 	if enemysAlive == 0:
 		Global.etage += 1
-		get_tree().change_scene_to_file("res://scenes/interior.tscn")
+		changeScene.emit()
+		
 	
 
 func next_round_timer() -> void:

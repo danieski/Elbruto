@@ -1,6 +1,9 @@
-AudioStreamPlayer2D
 AudioStreamPlayer
+AudioStreamPlayer2D
 AnimationPlayer
+AnimationTree
+ColorRect
+CanvasLayer
 GPUParticles2D
 AnimatedSprite2D
 Marker2D
@@ -9,6 +12,3 @@ Sprite2D
 PathFollow2D
 Path2D
 Camera2D
-HealthComponent
-CharacterBody2D
-TileMapLayer

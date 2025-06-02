@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=4 uid="uid://4ivjm0kmxfh4"]
+[gd_scene load_steps=18 format=4 uid="uid://4ivjm0kmxfh4"]
 
+[ext_resource type="PackedScene" uid="uid://cq1vy51lvel2d" path="res://scenes/transition.tscn" id="1_mqefh"]
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_v3l5x"]
 [ext_resource type="Texture2D" uid="uid://crkagdlxav46y" path="res://Assets/gfx/cave.png" id="2_srxsq"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="3_arx71"]
@@ -2903,6 +2904,8 @@ shader_parameter/enabled = false
 shader_parameter/tint = Color(1, 1, 1, 1)
 
 [node name="BossChambre" type="Node2D"]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_mqefh")]
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(4, -138)

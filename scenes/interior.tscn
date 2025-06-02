@@ -1,6 +1,7 @@
-[gd_scene load_steps=23 format=4 uid="uid://by1emc1h75sjm"]
+[gd_scene load_steps=22 format=4 uid="uid://by1emc1h75sjm"]
 
 [ext_resource type="Texture2D" uid="uid://dxuv60jr3t1to" path="res://Assets/gfx/Overworld.png" id="1_dxgu6"]
+[ext_resource type="PackedScene" uid="uid://cq1vy51lvel2d" path="res://scenes/transition.tscn" id="1_mhwen"]
 [ext_resource type="Texture2D" uid="uid://cx4thjdgcni1x" path="res://Assets/gfx/Inner.png" id="2_67u11"]
 [ext_resource type="PackedScene" uid="uid://cgeqxpr88y82k" path="res://scenes/Player.tscn" id="3_f7lh3"]
 [ext_resource type="Script" path="res://scripts/doorActionable.gd" id="4_a2rf6"]
@@ -9,8 +10,6 @@
 [ext_resource type="Resource" uid="uid://c5ngvo8f1f71f" path="res://dialog/shopDialog.dialogue" id="7_m6t6c"]
 [ext_resource type="PackedScene" uid="uid://clkn333emqg4p" path="res://scenes/shop.tscn" id="7_r6jsm"]
 [ext_resource type="Texture2D" uid="uid://bpauc51v0qnag" path="res://Assets/sprites/knight.png" id="9_8wj1d"]
-[ext_resource type="PackedScene" uid="uid://b47t7wxt7kiv0" path="res://scenes/slime.tscn" id="10_ubcct"]
-[ext_resource type="Resource" uid="uid://vy5hy6uhmwmm" path="res://resources/red.tres" id="11_bl7qj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fgdsa"]
 texture = ExtResource("1_dxgu6")
@@ -1668,6 +1667,8 @@ animations = [{
 
 [node name="Interior" type="Node2D"]
 
+[node name="CanvasLayer" parent="." instance=ExtResource("1_mhwen")]
+
 [node name="Floor" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAAAAAAAgAAAAEAAAAAAAEAAgAAAAIAAAAAAAIAAgAAAAIAAAAAAAMAAgAAAAIAAAABAAMAAgAAAAIAAAACAAMAAgAAAAEAAAADAAMAAgAAAAEAAAAEAAIAAgAAAAIAAAAEAAEAAgAAAAEAAAADAAEAAgAAAAIAAAADAAAAAgAAAAIAAAACAAAAAgAAAAIAAAABAAAAAgAAAAIAAAABAAEAAgAAAAEAAAABAAIAAgAAAAIAAAACAAIAAgAAAAEAAAACAAEAAgAAAAIAAAADAAIAAgAAAAEAAAAEAAMAAgAAAAIAAAAEAAAAAgAAAAIAAAAAAAQAAgAAAAIAAAABAAQAAgAAAAEAAAACAAQAAgAAAAIAAAADAAQAAgAAAAIAAAAFAAQAAgAAAAIAAAAFAAMAAgAAAAIAAAAFAAIAAgAAAAIAAAAFAAEAAgAAAAIAAAAFAAAAAgAAAAEAAAAFAAUAAgAAAAEAAAAEAAUAAgAAAAIAAAADAAUAAgAAAAIAAAAAAAUAAgAAAAEAAAABAAUAAgAAAAIAAAACAAUAAgAAAAIAAAAAAP3/AgABAAMAAAAAAP7/AgABAAQAAAAAAP//AgABAAUAAAABAP3/AgACAAMAAAABAP7/AgACAAQAAAABAP//AgACAAUAAAACAP3/AgADAAMAAAACAP7/AgADAAQAAAACAP//AgADAAUAAAADAP3/AgABAAMAAAADAP7/AgABAAQAAAADAP//AgABAAUAAAAEAP3/AgACAAMAAAAEAP7/AgACAAQAAAAEAP//AgACAAUAAAAFAP3/AgADAAMAAAAFAP7/AgADAAQAAAAFAP//AgADAAUAAAAEAAQAAgAAAAEAAAA=")
 tile_set = SubResource("TileSet_s5iu8")
@@ -1717,10 +1718,6 @@ unique_name_in_owner = true
 position = Vector2(9, 82)
 sprite_frames = SubResource("SpriteFrames_qarar")
 frame_progress = 0.206738
-
-[node name="Slime" parent="." node_paths=PackedStringArray("followAt") instance=ExtResource("10_ubcct")]
-followAt = NodePath("../Player")
-stats = ExtResource("11_bl7qj")
 
 [editable path="Player"]
 [editable path="Player/HurtBox"]

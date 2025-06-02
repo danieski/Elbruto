@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://b47t7wxt7kiv0"]
+[gd_scene load_steps=40 format=3 uid="uid://b47t7wxt7kiv0"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_ormnt"]
 [ext_resource type="Texture2D" uid="uid://gj84krdhayoo" path="res://Assets/sprites/sparks.png" id="2_7hspv"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="5_a0m8v"]
 [ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="6_0ljth"]
 [ext_resource type="AudioStream" uid="uid://d1vb2ggdado4d" path="res://Assets/sounds/hurt.wav" id="8_d1nlf"]
+[ext_resource type="AudioStream" uid="uid://cb54lm4832qwx" path="res://Assets/sounds/enemydeath.mp3" id="8_g5o7m"]
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="8_pl1sb"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_324is"]
@@ -284,6 +285,21 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AudioStreamPlayer2D")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.1097,
+"stream": ExtResource("8_g5o7m")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/5/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3cnfl"]
 resource_name = "hit"

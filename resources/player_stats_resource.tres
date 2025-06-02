@@ -4,10 +4,10 @@
 
 [resource]
 script = ExtResource("1_eun37")
-hp = 99
-mp = 99
-max_hp = 99
-max_mp = 99
-damage = 99.0
+hp = 5
+mp = 5
+max_hp = 5
+max_mp = 5
+damage = 1.0
 atackspeed = 1.0
 spell = 0

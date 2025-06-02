@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=3 uid="uid://cgeqxpr88y82k"]
+[gd_scene load_steps=128 format=3 uid="uid://cgeqxpr88y82k"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vrn3r"]
 [ext_resource type="Resource" uid="uid://cy3dx752sk83a" path="res://resources/player_stats_resource.tres" id="2_5e85p"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b0frrqjfje0wb" path="res://scenes/health_component.tscn" id="8_0bn53"]
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="8_5ipib"]
 [ext_resource type="Script" path="res://StateMachine/player_states/player_state_talking.gd" id="10_f7b5r"]
+[ext_resource type="AudioStream" uid="uid://i7hlto4l5oia" path="res://Assets/sounds/slash.mp3" id="10_opdpx"]
 [ext_resource type="Script" path="res://scripts/canvas_layer.gd" id="13_qabd2"]
 [ext_resource type="StyleBox" uid="uid://c8fq84pupm25w" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/HUD_Panen_Style.tres" id="14_odird"]
 [ext_resource type="StyleBox" uid="uid://dvtav16gx0cbc" path="res://addons/dialogue_quest/resources/themes/default/components/stylebox/default_panel_foreground.tres" id="15_m0hfm"]
@@ -767,6 +768,21 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(20, 8)]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_opdpx")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_hsbf7"]
 resource_name = "attack_left"
@@ -855,6 +871,21 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(-12, -9)]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer2D")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_opdpx")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_bo6f0"]
 resource_name = "attack_right"
@@ -943,6 +974,21 @@ tracks/6/keys = {
 "update": 0,
 "values": [Vector2(17, -9)]
 }
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AudioStreamPlayer2D")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_opdpx")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_ml7fq"]
 resource_name = "attack_up"
@@ -1019,6 +1065,21 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(3.32803e-06, -19.375)]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AudioStreamPlayer2D")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("10_opdpx")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_k7hpi"]
 resource_name = "dead"
@@ -1802,6 +1863,9 @@ visible = false
 position = Vector2(15.8437, -29.9687)
 scale = Vector2(0.0365234, 0.0373047)
 texture = ExtResource("20_4eh60")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(0, -8)
 
 [connection signal="idle_to_talking" from="." to="StateMachine/PlayerStateIdle" method="_on_player_idle_to_talking"]
 [connection signal="onDamageTaken" from="HealthComponent" to="." method="on_damage_taken"]

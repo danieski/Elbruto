@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://3f5cxipw815" path="res://scenes/hit_box.tscn" id="8_ll31w"]
 [ext_resource type="AudioStream" uid="uid://d1vb2ggdado4d" path="res://Assets/sounds/hurt.wav" id="10_qcr4u"]
 [ext_resource type="PackedScene" uid="uid://cci5c881hhw5i" path="res://scenes/sensor.tscn" id="11_b16a5"]
+[ext_resource type="AudioStream" uid="uid://cb54lm4832qwx" path="res://Assets/sounds/enemydeath.mp3" id="11_ikxtq"]
 [ext_resource type="PackedScene" uid="uid://ot4et6702iw3" path="res://scenes/hurt_box.tscn" id="12_ubm41"]
 
 [sub_resource type="Resource" id="Resource_2yysf"]
@@ -35,7 +36,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_6cdpm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ilk48"]
 resource_local_to_scene = true
 shader = ExtResource("4_p2rl3")
 shader_parameter/enabled = false
@@ -374,6 +375,21 @@ tracks/3/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AudioStreamPlayer2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("11_ikxtq")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/4/use_blend = true
 
 [sub_resource type="Animation" id="Animation_3pvsm"]
 resource_name = "idle"
@@ -496,8 +512,6 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_2w702"]
 radius = 9.61488
 
-[sub_resource type="AudioStreamPolyphonic" id="AudioStreamPolyphonic_ocil2"]
-
 [node name="BatEnemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 65
 script = ExtResource("1_q2nxc")
@@ -510,7 +524,7 @@ scale = Vector2(0.026, 0.024)
 sprite_frames = SubResource("SpriteFrames_afp2p")
 
 [node name="AnimatedSprite2D" parent="." instance=ExtResource("1_1av6q")]
-material = SubResource("ShaderMaterial_6cdpm")
+material = SubResource("ShaderMaterial_ilk48")
 position = Vector2(0.999999, 1)
 scale = Vector2(1, 0.9375)
 sprite_frames = SubResource("SpriteFrames_h4x55")
@@ -542,7 +556,6 @@ scale = Vector2(0.945, 0.81)
 shape = SubResource("CircleShape2D_2w702")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamPolyphonic_ocil2")
 
 [connection signal="onDamageTaken" from="HealthComponent" to="." method="_on_health_component_on_damage_taken"]
 [connection signal="onDead" from="HealthComponent" to="." method="_on_health_component_on_dead"]
